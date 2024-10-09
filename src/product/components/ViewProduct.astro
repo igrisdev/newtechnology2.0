@@ -3,8 +3,8 @@ import { SliderProduct } from '../componentsIslands/SliderProcut'
 import InformationProduct from '@product/components/InformationProduct.astro'
 ---
 
-<section class="flex flex-col md:flex-row gap-4">
-  <SliderProduct />
+<section class="flex flex-col md:flex-row gap-4 md:h-[70vh] pb-10">
+  <SliderProduct client:load />
 
   <InformationProduct />
 </section>
