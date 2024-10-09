@@ -8,7 +8,8 @@
       "@homeComponentsIslands/*": ["src/home/componentsIslands/*"],
       "@homeLayouts/*": ["src/home/layouts/*"],
       "@assets/*": ["src/assets/*"],
-      "@product/*": ["./src/product/*"]
+      "@product/*": ["./src/product/*"],
+      "@utils/*": ["./src/utils/*"]
     },
     "jsx": "react-jsx",
     "jsxImportSource": "react"
