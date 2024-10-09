@@ -17,13 +17,26 @@ type Product = {
   isFavorite: boolean
 }
 
-export const SectionProducts = () => {
-  const [filter, setFilter] = useState('todos')
-  const [products, setProducts] = useState<Product[]>()
+export const SimilarProducts = () => {
+  const [filter, setFilter] = useState('celulares')
+  const [products, setProducts] = useState<Product[]>([])
 
   const productsData: Product[] = [
     {
       id: 1,
+      category: 'Celulares',
+      collection: 'celulares',
+      image:
+        'https://tienda.claro.com.co/wcsstore/Claro/images/catalog/equipos/646x1000/70056838.jpg',
+      title: 'Samsung Galaxy S21',
+      price: '$199',
+      descuento: '$10',
+      description: 'Samsung Galaxy S21 Ultra 5G',
+      stock: '100',
+      isFavorite: true,
+    },
+    {
+      id: 12,
       category: 'Celulares',
       collection: 'celulares',
       image:
@@ -63,22 +76,9 @@ export const SectionProducts = () => {
     },
   ]
 
-  const buttons = [
-    { name: 'Todos', value: 'todos' },
-    { name: 'Celulares', value: 'celulares' },
-    { name: 'Accesorios', value: 'accesorios' },
-    { name: 'Partes', value: 'partes' },
-  ]
-
   useEffect(() => {
     setProducts(productsData)
   }, [])
-
-  const stylesButtonSelected = 'bg-local_button text-local_text_2'
-
-  const handleClick = (value: string): void => {
-    setFilter((prevState: string) => (prevState === value ? prevState : value))
-  }
 
   const handleFilterProducts = (): void => {
     const newProducts = productsData?.filter(({ collection }: Product) =>
@@ -88,31 +88,21 @@ export const SectionProducts = () => {
     setProducts(newProducts)
   }
 
+  useEffect(() => {
+    setFilter('celulares')
+  }, [])
+
   useMemo(() => {
     handleFilterProducts()
   }, [filter])
 
   return (
     <div className="flex flex-col gap-12 py-10">
-      <div className="flex justify-center items-center gap-2 flex-wrap">
-        {buttons.map(({ name, value }: { name: string; value: string }) => (
-          <button
-            key={value}
-            onClick={(): void => handleClick(value)}
-            className={
-              'px-7 py-3 uppercase border-local_button border-[1px] font-bold text-sm text-local_text ' +
-              (filter === value ? stylesButtonSelected : '')
-            }
-          >
-            {name}
-          </button>
-        ))}
-      </div>
-
-      <div id="products">
+      <h2 className="text-2xl font-bold">Mas Productos</h2>
+      <div id={`${products?.length < 3 ? 'two-products' : 'products'}`}>
         {products?.length == 0 && (
           <p className="text-center text-local_text">
-            No hay productos disponibles
+            No hay mas productos de esta categoría
           </p>
         )}
         {products?.map(

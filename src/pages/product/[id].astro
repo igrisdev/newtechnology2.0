@@ -1,7 +1,8 @@
 ---
 import Layout from '@homeLayouts/Layout.astro'
 
-import ViewProduct from 'src/product/components/ViewProduct.astro'
+import ViewProduct from '@product/components/ViewProduct.astro'
+import { SimilarProducts } from '@product/componentsIslands/SimilarProducts'
 
 export const getStaticPaths = () => {
   return [
@@ -18,4 +19,6 @@ const { id } = Astro.params
   <!-- <SearchProducts /> -->
 
   <ViewProduct />
+
+  <SimilarProducts />
 </Layout>

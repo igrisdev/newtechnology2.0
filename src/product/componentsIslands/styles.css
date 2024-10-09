@@ -1,0 +1,30 @@
+#products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 400px);
+  grid-auto-rows: 500px;
+  gap: 20px;
+  justify-content: space-evenly;
+
+  @media (width <= 450px) {
+    grid-template-columns: repeat(auto-fit, 100%);
+    gap: 10px;
+  }
+}
+
+#two-products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 400px);
+  grid-auto-rows: 500px;
+  gap: 20px;
+  justify-content: start;
+
+  @media (width <= 858px) {
+    justify-content: space-evenly;
+    gap: 10px;
+
+    @media (width <= 450px) {
+      grid-template-columns: repeat(auto-fit, 100%);
+      gap: 10px;
+    }
+  }
+}
