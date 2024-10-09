@@ -1,0 +1,21 @@
+---
+import Layout from '@homeLayouts/Layout.astro'
+
+import ViewProduct from 'src/product/components/ViewProduct.astro'
+
+export const getStaticPaths = () => {
+  return [
+    {
+      params: { id: 1 },
+    },
+  ]
+}
+
+const { id } = Astro.params
+---
+
+<Layout title="id">
+  <!-- <SearchProducts /> -->
+
+  <ViewProduct />
+</Layout>
