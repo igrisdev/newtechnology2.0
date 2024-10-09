@@ -19,6 +19,8 @@ export const APIProducts = {
       }
       const data = await response.json()
 
+      console.log(data)
+
       return data.records
     } catch (error) {
       console.error('Error:', error)
