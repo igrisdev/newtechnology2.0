@@ -1,0 +1,59 @@
+---
+const frames = [
+  {
+    title: 'Cuadro 1',
+    image:
+      'https://res.cloudinary.com/dbwupri3k/image/upload/v1726464015/rwiqqxnkc7ytsqhunnfd.jpg',
+  },
+  {
+    title: 'Cuadro 2',
+    image:
+      'https://res.cloudinary.com/dbwupri3k/image/upload/v1726464015/rwiqqxnkc7ytsqhunnfd.jpg',
+  },
+  {
+    title: 'Cuadro 3',
+    image:
+      'https://res.cloudinary.com/dbwupri3k/image/upload/v1726464015/rwiqqxnkc7ytsqhunnfd.jpg',
+  },
+  {
+    title: 'Cuadro 4',
+    image:
+      'https://res.cloudinary.com/dbwupri3k/image/upload/v1726464015/rwiqqxnkc7ytsqhunnfd.jpg',
+  },
+]
+---
+
+<section class="flex flex-col gap-12 md:py-10 pt-16 pb-10" id="frames-top">
+  <div class="w-full">
+    <h2 class="text-4xl font-bold text-center !text-local_title">
+      Cuadros Personalizados
+    </h2>
+    <p class="text-center text-local_text">Encarga tu cuadro personalizado</p>
+  </div>
+
+  <div id="frames">
+    {
+      frames.map(({ title, image }: { title: string; image: string }) => (
+        <article class="overflow-hidden rounded-md shadow-md hover:scale-[102%] hover:shadow-local_accent transition-all duration-300">
+          <img class="w-full h-full object-cover" src={image} alt={title} />
+        </article>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  #frames {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 400px);
+    grid-auto-rows: 400px;
+    gap: 20px;
+    justify-content: space-evenly;
+
+    @media (width <= 450px) {
+      grid-template-columns: repeat(auto-fit, 100%);
+      grid-auto-rows: 300px;
+      gap: 10px;
+    }
+  }
+</style>
