@@ -32,7 +32,7 @@ export type Fields = {
   shell?: string
   origin?: string
   stock?: number
-  Price?: number
+  price?: number
   nameProduct?: string
   listDescription?: string
   collection?: string
