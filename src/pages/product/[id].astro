@@ -4,21 +4,13 @@ import Layout from '@homeLayouts/Layout.astro'
 import ViewProduct from '@product/components/ViewProduct.astro'
 import { SimilarProducts } from '@product/componentsIslands/SimilarProducts'
 
-export const getStaticPaths = () => {
-  return [
-    {
-      params: { id: 'recI4ORJrmrwmEXzt' },
-    },
-  ]
-}
-
 const { id } = Astro.params
 ---
 
 <Layout title="id">
   <!-- <SearchProducts /> -->
 
-  <ViewProduct />
+  <ViewProduct id={id} />
 
   <SimilarProducts />
 </Layout>

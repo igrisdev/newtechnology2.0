@@ -4,59 +4,16 @@ import { useEffect, useMemo, useState } from 'react'
 
 import './styles.css'
 
-import { useStore } from '@nanostores/react'
-import { $products } from '@/store/products'
-
-import { getProducts } from '@/store/products'
+import { useStoreProduct } from '@/store/product'
+import { APIProducts } from '@/services/API'
+import { parseDataProducts } from '@/utils/parseDataProducts'
 
 type Product = any
 
 export const SectionProducts = () => {
-  const productsData = useStore($products)
+  const { productsData, setProductsData } = useStoreProduct()
   const [filter, setFilter] = useState('todos')
   const [products, setProducts] = useState<Product[]>()
-
-  // const productsData: Product[] = [
-  //   {
-  //     id: 1,
-  //     category: 'Celulares',
-  //     collection: 'celulares',
-  //     image:
-  //       'https://tienda.claro.com.co/wcsstore/Claro/images/catalog/equipos/646x1000/70056838.jpg',
-  //     title: 'Samsung Galaxy S21',
-  //     price: '$199',
-  //     descuento: '$10',
-  //     description: 'Samsung Galaxy S21 Ultra 5G',
-  //     stock: '100',
-  //     isFavorite: true,
-  //   },
-  //   {
-  //     id: 2,
-  //     category: 'Auriculares',
-  //     collection: 'accesorios',
-  //     image:
-  //       'https://jyrtechnology.com.co/wp-content/uploads/2020/05/043-MV-3.png',
-  //     title: 'Uborn P47 Wireless Headphones',
-  //     price: '$199',
-  //     descuento: '$10',
-  //     description: 'Samsung Galaxy S21 Ultra 5G',
-  //     stock: '100',
-  //     isFavorite: false,
-  //   },
-  //   {
-  //     id: 3,
-  //     category: 'Auriculares',
-  //     collection: 'accesorios',
-  //     image:
-  //       'https://jyrtechnology.com.co/wp-content/uploads/2020/05/043-MV-3.png',
-  //     title: 'Uborn P47 Wireless Headphones',
-  //     price: '$199',
-  //     descuento: '$10',
-  //     description: 'Samsung Galaxy S21 Ultra 5G',
-  //     stock: '100',
-  //     isFavorite: false,
-  //   },
-  // ]
 
   const buttons = [
     { name: 'Todos', value: 'todos' },
@@ -66,7 +23,10 @@ export const SectionProducts = () => {
   ]
 
   useEffect(() => {
-    getProducts()
+    APIProducts.getProducts().then((data) => {
+      const newData = parseDataProducts(data)
+      setProductsData(newData)
+    })
   }, [])
 
   useMemo(() => {

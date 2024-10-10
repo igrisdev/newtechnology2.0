@@ -24,4 +24,21 @@ export const APIProducts = {
       console.error('Error:', error)
     }
   },
+  getOneProduct: async (id: string) => {
+    try {
+      const response = await fetch(
+        `https://api.airtable.com/v0/${baseId}/${tableIdOrName}/${id}`,
+        { headers }
+      )
+      if (!response.ok) {
+        throw new Error(`Error al obtener datos: ${response.statusText}`)
+      }
+
+      const data = await response.json()
+
+      return data
+    } catch (error) {
+      console.error('Error:', error)
+    }
+  },
 }

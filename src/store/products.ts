@@ -1,4 +1,4 @@
-import { APIProducts } from '@/utils/API'
+import { APIProducts } from '@/services/API'
 import { atom } from 'nanostores'
 
 // export const $products = atom<User[]>([])
@@ -26,6 +26,29 @@ export function getProducts() {
         shell: product.fields.shell,
       }
     })
+    $products.set(newData)
+  })
+}
+
+export function getOneProduct(id: string) {
+  APIProducts.getOneProduct(id).then((data) => {
+    const newData = data.map((product: any) => {
+      return {
+        id: product.id,
+        category: product.fields.category,
+        collection: product.fields.collection,
+        brandProduct: product.fields.brandProduct,
+        image: product.fields.images,
+        title: product.fields.nameProduct,
+        price: product.fields.price,
+        descuento: product.fields.discount,
+        description: product.fields.listDescription,
+        stock: product.fields.stock,
+        origin: product.fields.origin,
+        shell: product.fields.shell,
+      }
+    })
+    console.log(newData)
     $products.set(newData)
   })
 }
