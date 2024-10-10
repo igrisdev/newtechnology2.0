@@ -4,6 +4,7 @@ import { useStoreProduct } from '@/store/product'
 import { APIProducts } from '@/services/API'
 
 import { parseDataProducts } from '@/utils/parseDataProducts'
+import type { Image } from '@/env'
 
 // const productImages = [
 //   'https://fps.cdnpk.net/images/home/subhome-ai.webp?w=649&h=649',
@@ -14,7 +15,7 @@ import { parseDataProducts } from '@/utils/parseDataProducts'
 
 export const SliderProduct = ({ id }: { id: string }) => {
   const { productsDataOne, setProductsDataOne } = useStoreProduct()
-  const [productImages, setProductImages] = useState([])
+  const [productImages, setProductImages] = useState<Image[]>([])
   const [currentImage, setCurrentImage] = useState(0)
 
   useEffect(() => {

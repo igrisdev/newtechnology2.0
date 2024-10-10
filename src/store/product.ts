@@ -1,12 +1,13 @@
-import { APIProducts } from '@/services/API'
+import type { ProductData } from '@/env'
 import { create } from 'zustand'
 
-// type StoreProduct = {
-//   count: number
-//   inc: () => void
-// }
-
-export const useStoreProduct = create()((set) => ({
+type useStoreProduct = {
+  productsData: ProductData
+  productsDataOne: ProductData
+  setProductsData: (productsData: ProductData) => void
+  setProductsDataOne: (productsDataOne: ProductData) => void
+}
+export const useStoreProduct = create<useStoreProduct>()((set) => ({
   productsData: [],
   productsDataOne: [],
   setProductsData: (productsData) => set(() => ({ productsData })),

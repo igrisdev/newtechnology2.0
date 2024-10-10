@@ -7,8 +7,7 @@ import './styles.css'
 import { useStoreProduct } from '@/store/product'
 import { APIProducts } from '@/services/API'
 import { parseDataProducts } from '@/utils/parseDataProducts'
-
-type Product = any
+import type { Product } from '@/env'
 
 export const SectionProducts = () => {
   const { productsData, setProductsData } = useStoreProduct()
