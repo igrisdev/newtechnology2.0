@@ -1,6 +1,6 @@
 import { useStoreProduct } from '@/store/product'
 
-export const InformationProduct = ({ id }) => {
+export const InformationProduct = ({ id }: { id: string }) => {
   const { productsDataOne } = useStoreProduct()
 
   console.log(productsDataOne)
