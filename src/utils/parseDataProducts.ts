@@ -1,4 +1,6 @@
 import type { Fields, ProductData } from '@/env'
+import { generateListOfDescription } from './generateListOfDescription'
+import { parsePrice } from './parsePrice'
 
 export const parseDataProducts = (data: Fields): ProductData => {
   const newData = Array.isArray(data) ? data : [data]
@@ -10,9 +12,9 @@ export const parseDataProducts = (data: Fields): ProductData => {
     brandProduct: product.fields.brandProduct,
     image: product.fields.images,
     title: product.fields.nameProduct,
-    price: product.fields.price,
+    price: parsePrice(product.fields.price),
     descuento: product.fields.discount,
-    description: product.fields.listDescription,
+    description: generateListOfDescription(product.fields.listDescription),
     stock: product.fields.stock,
     origin: product.fields.origin,
     shell: product.fields.shell,
