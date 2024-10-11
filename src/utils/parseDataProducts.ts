@@ -1,5 +1,5 @@
 import type { Fields, ProductData } from '@/env'
-import { generateListOfDescription } from './generateListOfDescription'
+import { generateListOfInformation } from './generateListInformation'
 import { parsePrice } from './parsePrice'
 
 export const parseDataProducts = (data: Fields): ProductData => {
@@ -14,7 +14,8 @@ export const parseDataProducts = (data: Fields): ProductData => {
     title: product.fields.nameProduct,
     price: parsePrice(product.fields.price),
     descuento: product.fields.discount,
-    description: generateListOfDescription(product.fields.listDescription),
+    description: generateListOfInformation(product.fields.description),
+    features: generateListOfInformation(product.fields.features),
     stock: product.fields.stock,
     origin: product.fields.origin,
     shell: product.fields.shell,

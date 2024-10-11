@@ -12,6 +12,7 @@ export type Product = {
   price: number | string
   descuento: number
   description: string[]
+  features: string[]
   stock: number
   origin: string
   shell: string
