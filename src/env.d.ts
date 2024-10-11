@@ -9,9 +9,9 @@ export type Product = {
   brandProduct: string
   image: Image[]
   title: string
-  price: number
+  price: number | string
   descuento: number
-  description: string
+  description: string[]
   stock: number
   origin: string
   shell: string
