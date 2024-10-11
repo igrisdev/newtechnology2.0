@@ -1,6 +1,6 @@
 import { useStoreProduct } from '@/store/product'
 
-export const InformationProduct = ({ id }: { id: string }) => {
+export const InformationProduct = () => {
   const { productsDataOne } = useStoreProduct()
 
   return (
@@ -16,13 +16,9 @@ export const InformationProduct = ({ id }: { id: string }) => {
         <p className="font-semibold mb-2">Descripciones</p>
         <div className="flex space-x-2">
           <ul className="list-disc list-inside mb-4">
-            <li>It is a long established fact that a reader</li>
-            <li>
-              The point of using Lorem ipsum The point of using Lorem ipsum
-            </li>
-            <li>
-              It has survived not only five centuries not only five centuries
-            </li>
+            {productsDataOne[0]?.description?.map((description) => (
+              <li>{description}</li>
+            ))}
           </ul>
         </div>
       </div>
