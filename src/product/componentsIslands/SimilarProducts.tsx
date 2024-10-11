@@ -10,16 +10,8 @@ import { parseDataProducts } from '@/utils/parseDataProducts'
 import type { Product } from '@/env'
 
 export const SimilarProducts = () => {
-  const { productsData, setProductsData } = useStoreProduct()
-  const [filter, setFilter] = useState('todos')
-  const [products, setProducts] = useState<Product[]>()
-
-  const buttons = [
-    { name: 'Todos', value: 'todos' },
-    { name: 'Celulares', value: 'celulares' },
-    { name: 'Accesorios', value: 'accesorios' },
-    { name: 'Partes', value: 'partes' },
-  ]
+  const { productsData, setProductsData, productsDataOne } = useStoreProduct()
+  const [products, setProducts] = useState<Product[]>([])
 
   useEffect(() => {
     APIProducts.getProducts().then((data) => {
@@ -29,45 +21,20 @@ export const SimilarProducts = () => {
   }, [])
 
   useMemo(() => {
-    setProducts(productsData)
-  }, [productsData])
-
-  const stylesButtonSelected = 'bg-local_button text-local_text_2'
-
-  const handleClick = (value: string): void => {
-    setFilter((prevState: string) => (prevState === value ? prevState : value))
-  }
-
-  const handleFilterProducts = (): void => {
-    const newProducts = productsData?.filter(({ collection }: Product) =>
-      filter == 'todos' ? productsData : collection == filter
+    const newProducts = productsData.filter(
+      ({ collection, id }: Product) =>
+        collection == productsDataOne[0]?.collection &&
+        id != productsDataOne[0]?.id
     )
 
     setProducts(newProducts)
-  }
-
-  useMemo(() => {
-    handleFilterProducts()
-  }, [filter])
+  }, [productsData, productsDataOne])
 
   return (
     <div className="flex flex-col gap-12 py-10">
-      <div className="flex justify-center items-center gap-2 flex-wrap">
-        {buttons.map(({ name, value }: { name: string; value: string }) => (
-          <button
-            key={value}
-            onClick={(): void => handleClick(value)}
-            className={
-              'px-7 py-3 uppercase border-local_button border-[1px] font-bold text-sm text-local_text ' +
-              (filter === value ? stylesButtonSelected : '')
-            }
-          >
-            {name}
-          </button>
-        ))}
-      </div>
+      <h2 className="text-2xl font-semibold">Productos Similares</h2>
 
-      <div id="products">
+      <div id={`${products?.length < 2 ? 'two-products' : 'products'}`}>
         {products?.length == 0 && (
           <p className="text-center text-local_text">
             No hay productos disponibles

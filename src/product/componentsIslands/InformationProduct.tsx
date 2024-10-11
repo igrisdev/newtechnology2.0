@@ -3,8 +3,6 @@ import { useStoreProduct } from '@/store/product'
 export const InformationProduct = ({ id }: { id: string }) => {
   const { productsDataOne } = useStoreProduct()
 
-  console.log(productsDataOne)
-
   return (
     <div className="flex-1 flex flex-col">
       <h1 className="text-3xl font-bold mb-4">{productsDataOne[0]?.title}</h1>

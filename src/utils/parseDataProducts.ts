@@ -1,4 +1,6 @@
-export const parseDataProducts = (data) => {
+import type { Fields, ProductData } from '@/env'
+
+export const parseDataProducts = (data: Fields): ProductData => {
   const newData = Array.isArray(data) ? data : [data]
 
   return newData.map((product) => ({

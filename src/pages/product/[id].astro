@@ -12,5 +12,5 @@ const { id } = Astro.params
 
   <ViewProduct id={id} />
 
-  <SimilarProducts />
+  <SimilarProducts client:load />
 </Layout>
