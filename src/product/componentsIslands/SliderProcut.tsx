@@ -6,13 +6,6 @@ import { APIProducts } from '@/services/API'
 import { parseDataProducts } from '@/utils/parseDataProducts'
 import type { Image } from '@/env'
 
-// const productImages = [
-//   'https://fps.cdnpk.net/images/home/subhome-ai.webp?w=649&h=649',
-//   'https://gratisography.com/wp-content/uploads/2024/03/gratisography-funflower-800x525.jpg',
-//   'https://fps.cdnpk.net/images/home/subhome-ai.webp?w=649&h=649',
-//   'https://gratisography.com/wp-content/uploads/2024/03/gratisography-funflower-800x525.jpg',
-// ]
-
 export const SliderProduct = ({ id }: { id: string }) => {
   const { productsDataOne, setProductsDataOne } = useStoreProduct()
   const [productImages, setProductImages] = useState<Image[]>([])

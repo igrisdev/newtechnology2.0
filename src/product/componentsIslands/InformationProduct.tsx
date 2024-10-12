@@ -15,16 +15,20 @@ export const InformationProduct = () => {
       <div>
         <h2 className="font-semibold">Descripción</h2>
         <div className="grid gap-2 md:max-h-52 overflow-y-auto">
-          {productsDataOne[0]?.description?.map((description) => (
-            <p className="text-sm">{description}</p>
+          {productsDataOne[0]?.description?.map((description, index) => (
+            <p className="text-sm" key={description + index}>
+              {description}
+            </p>
           ))}
         </div>
       </div>
       <div>
         <h2 className="font-semibold">Características</h2>
         <ul className="list-disc list-inside md:max-h-52 overflow-y-auto">
-          {productsDataOne[0]?.features?.map((feature) => (
-            <li className="text-sm">{feature}</li>
+          {productsDataOne[0]?.features?.map((feature, index) => (
+            <li className="text-sm" key={feature + index}>
+              {feature}
+            </li>
           ))}
         </ul>
       </div>
@@ -46,9 +50,9 @@ export const InformationProduct = () => {
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
           className="icon icon-tabler icons-tabler-outline icon-tabler-brand-whatsapp"
         >
           <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -63,8 +67,11 @@ export const InformationProduct = () => {
           'Entrega en persona',
           'Producto en excelente condición',
           'Calidad precio',
-        ].map((feature) => (
-          <article className="border flex items-center justify-center">
+        ].map((info, index) => (
+          <article
+            className="border flex items-center justify-center"
+            key={info + index}
+          >
             <div className="flex flex-col items-center justify-center p-4">
               <svg
                 className="w-6 h-6 "
@@ -74,13 +81,13 @@ export const InformationProduct = () => {
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width={2}
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
                   d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
                 />
               </svg>
-              <p className="text-sm text-center">{feature}</p>
+              <p className="text-sm text-center">{info}</p>
             </div>
           </article>
         ))}

@@ -79,8 +79,8 @@ export const SlideHome = () => {
         navigation={true}
         className="mySwiper"
       >
-        {services.map(({ title, description, image }) => (
-          <SwiperSlide key={title}>
+        {services.map(({ title, description, image }, index) => (
+          <SwiperSlide key={title + index}>
             <article className="flex flex-col h-[450px]">
               <div className="min-h-[270px] max-h-[225px] rounded-md overflow-hidden">
                 <img
