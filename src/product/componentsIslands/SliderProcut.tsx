@@ -1,6 +1,6 @@
-import { useState } from 'react'
-
 import type { Image } from '@/env'
+
+import { useState } from 'react'
 
 export const SliderProduct = ({ image }: { image: Image[] }) => {
   const [productImages] = useState<Image[]>(image)
