@@ -32,7 +32,7 @@ export const APIProducts = {
     id: idProduct,
     collection: collectionProduct,
   }: {
-    id: number
+    id: number | string
     collection: string
   }) => {
     try {
@@ -58,7 +58,7 @@ export const APIProducts = {
       console.error('Error:', error)
     }
   },
-  getOneProduct: async (id: number) => {
+  getOneProduct: async (id: string) => {
     try {
       const response = await fetch(
         `https://api.airtable.com/v0/${baseId}/${tableIdOrName}/${id}`,
@@ -71,7 +71,9 @@ export const APIProducts = {
 
       const data = await response.json()
 
-      return data
+      const newData = parseDataProducts(data) || []
+
+      return newData
     } catch (error) {
       console.error('Error:', error)
     }

@@ -8,34 +8,31 @@ import ViewProduct from '@/product/components/ViewProduct.astro'
 
 import { APIProducts } from '@/services/API'
 
-export const getStaticPaths = async () => {
-  const data = (await APIProducts.getProducts()) || []
+export const prerender = false
 
-  return data.map((data) => ({
-    params: {
-      id: data.id,
-    },
-    props: {
-      fields: data,
-    },
-  }))
-}
+const { id } = Astro.params as { id: string }
 
-const { id } = Astro.params
-
-const { fields } = Astro.props
+const fields: ProductData = (await APIProducts.getOneProduct(id)) || []
 
 const products: ProductData =
   (await APIProducts.getSimilarProducts({
-    id: id,
-    collection: fields.collection,
+    id,
+    collection: fields[0]?.collection,
   })) || []
 ---
 
 <Layout title="id">
-  <ViewProduct {...fields} />
+  <ViewProduct
+    image={fields[0]?.image}
+    title={fields[0]?.title}
+    price={fields[0]?.price}
+    origin={fields[0]?.origin}
+    descuento={fields[0]?.descuento}
+    description={fields[0]?.description}
+    features={fields[0]?.features}
+  />
 
-  <!-- <SimilarProducts products={products} /> -->
+  <SimilarProducts products={products} />
 </Layout>
 
 <!-- <SearchProducts /> -->
