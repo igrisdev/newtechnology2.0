@@ -99,10 +99,20 @@ export const SectionProducts = ({
                       </span>
                       <h2 className="text-lg font-semibold">{title}</h2>
                       <div className="flex gap-2 items-center">
-                        <span className="text-xl font-medium text-local_text">
-                          {price}
-                        </span>
-                        <span>{descuento}</span>
+                        {descuento ? (
+                          <>
+                            <span className="text-xl font-medium text-local_text">
+                              <span>{descuento}</span>
+                            </span>
+                            <span className="text-sm font-medium text-black/45 line-through">
+                              {price}
+                            </span>
+                          </>
+                        ) : (
+                          <span className="text-xl font-medium text-local_text">
+                            {price}
+                          </span>
+                        )}
                       </div>
                     </div>
 

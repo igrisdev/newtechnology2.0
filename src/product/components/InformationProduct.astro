@@ -1,11 +1,20 @@
 ---
-const { title, price, description, features, origin } = Astro.props
+const { title, price, description, features, origin, descuento } = Astro.props
 ---
 
 <div class="flex-1 flex flex-col gap-2 overflow-hidden">
   <h1 class="text-3xl font-bold">{title}</h1>
   <p class="text-3xl font-bold">
-    $ {price}
+    $ {
+      descuento ? (
+        <>
+          <span>{descuento}</span>
+          <span class="text-sm font-normal line-through ">({price})</span>
+        </>
+      ) : (
+        <span>{price}</span>
+      )
+    }
     <span class="text-sm font-normal">({origin})</span>
   </p>
   <div>

@@ -26,7 +26,7 @@ export const SliderProduct = ({ image }: { image: Image[] }) => {
         {productImages?.slice(0, 8).map(({ url, id }, index: number) => {
           return (
             <button
-              className={`border-2 overflow-hidden rounded-md ${
+              className={`max-h-[148px] border-2 overflow-hidden rounded-md ${
                 index === currentImage ? styleImageSelected : ''
               }`}
               key={id}

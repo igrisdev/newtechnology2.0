@@ -10,7 +10,7 @@ export type Product = {
   image: Image[]
   title: string
   price: number | string
-  descuento: number
+  descuento?: number | string
   description: string[]
   features: string[]
   stock: number

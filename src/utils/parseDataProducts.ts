@@ -13,7 +13,7 @@ export const parseDataProducts = (data: Fields): ProductData => {
     image: product.fields.images,
     title: product.fields.nameProduct,
     price: parsePrice(product.fields.price),
-    descuento: product.fields.discount,
+    descuento: parsePrice(product?.fields?.discount),
     description: generateListOfInformation(product.fields.description),
     features: generateListOfInformation(product.fields.features),
     stock: product.fields.stock,
