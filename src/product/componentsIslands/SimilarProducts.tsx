@@ -1,13 +1,14 @@
-import { useEffect, useMemo, useState } from 'react'
-
-// import { ButtonFilter } from './ButtonFilter'
-
 import './styles.css'
 
-import { useStoreProduct } from '@/store/product'
-import { APIProducts } from '@/services/API'
-import { parseDataProducts } from '@/utils/parseDataProducts'
 import type { Product } from '@/env'
+
+import { useEffect, useMemo, useState } from 'react'
+
+import { useStoreProduct } from '@/store/product'
+
+import { APIProducts } from '@/services/API'
+
+import { parseDataProducts } from '@/utils/parseDataProducts'
 
 export const SimilarProducts = () => {
   const { productsData, setProductsData, productsDataOne } = useStoreProduct()

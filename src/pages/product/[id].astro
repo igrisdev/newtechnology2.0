@@ -4,13 +4,13 @@ import Layout from '@/product/layouts/Layout.astro'
 import ViewProduct from '@product/components/ViewProduct.astro'
 import { SimilarProducts } from '@product/componentsIslands/SimilarProducts'
 
-const { id } = Astro.params
+const { id } = Astro.params as { id: string }
 ---
 
-<Layout title="id">
-  <!-- <SearchProducts /> -->
-
+<Layout title={id?.toString()}>
   <ViewProduct id={id} />
 
   <SimilarProducts client:load />
 </Layout>
+
+<!-- <SearchProducts /> -->
