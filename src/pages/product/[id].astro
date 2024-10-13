@@ -1,16 +1,17 @@
 ---
-import ViewProduct from '@/product/components/ViewProduct.astro'
+import type { ProductData } from '@/env'
+
 import Layout from '@/product/layouts/Layout.astro'
 
+import SimilarProducts from '@/product/components/SimilarProducts.astro'
+import ViewProduct from '@/product/components/ViewProduct.astro'
+
 import { APIProducts } from '@/services/API'
-import { parseDataProducts } from '@/utils/parseDataProducts'
 
 export const getStaticPaths = async () => {
-  const data = await APIProducts.getProducts()
+  const data = (await APIProducts.getProducts()) || []
 
-  const newData = parseDataProducts(data)
-
-  return newData.map((data) => ({
+  return data.map((data) => ({
     params: {
       id: data.id,
     },
@@ -20,7 +21,15 @@ export const getStaticPaths = async () => {
   }))
 }
 
+const { id } = Astro.params
+
 const { fields } = Astro.props
+
+const products: ProductData =
+  (await APIProducts.getSimilarProducts({
+    id: id,
+    collection: fields.collection,
+  })) || []
 ---
 
 <Layout title="id">
@@ -28,5 +37,5 @@ const { fields } = Astro.props
 
   <ViewProduct {...fields} />
 
-  <!-- <SimilarProducts client:load /> -->
+  <SimilarProducts products={products} />
 </Layout>

@@ -1,3 +1,5 @@
+import { parseDataProducts } from '@/utils/parseDataProducts'
+
 const baseId = import.meta.env.PUBLIC_YOUR_BASE_ID
 const tableIdOrName = import.meta.env.PUBLIC_YOUR_TABLE_ID_OR_NAME_PRODUCTS
 
@@ -19,17 +21,50 @@ export const APIProducts = {
       }
       const data = await response.json()
 
-      return data.records
+      const newData = parseDataProducts(data.records) || []
+
+      return newData
     } catch (error) {
       console.error('Error:', error)
     }
   },
-  getOneProduct: async (id: string) => {
+  getSimilarProducts: async ({
+    id: idProduct,
+    collection: collectionProduct,
+  }: {
+    id: number
+    collection: string
+  }) => {
+    try {
+      const response = await fetch(
+        `https://api.airtable.com/v0/${baseId}/${tableIdOrName}`,
+        { headers }
+      )
+      if (!response.ok) {
+        throw new Error(`Error al obtener datos: ${response.statusText}`)
+      }
+      const data = await response.json()
+
+      const parseData = parseDataProducts(data.records)
+
+      const newData =
+        parseData.filter(
+          ({ collection, id }) =>
+            collection == collectionProduct && id != idProduct
+        ) || []
+
+      return newData
+    } catch (error) {
+      console.error('Error:', error)
+    }
+  },
+  getOneProduct: async (id: number) => {
     try {
       const response = await fetch(
         `https://api.airtable.com/v0/${baseId}/${tableIdOrName}/${id}`,
         { headers }
       )
+
       if (!response.ok) {
         throw new Error(`Error al obtener datos: ${response.statusText}`)
       }

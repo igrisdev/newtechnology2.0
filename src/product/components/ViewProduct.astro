@@ -1,6 +1,7 @@
 ---
-import { SliderProduct } from '../componentsIslands/SliderProcut'
 import InformationProduct from './InformationProduct.astro'
+
+import { SliderProduct } from '../componentsIslands/SliderProcut'
 
 const {
   id,
@@ -30,15 +31,3 @@ const {
     origin={origin}
   />
 </section>
-
-<!-- ---
-import { SliderProduct } from '../componentsIslands/SliderProcut'
-
-const { id } = Astro.props
----
-
-<section class="flex flex-col md:flex-row gap-4 md:h-[85vh] pb-10">
-  <SliderProduct id={id} client:load />
-
-  <InformationProduct client:load />
-</section> -->

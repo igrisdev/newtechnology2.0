@@ -1,18 +1,16 @@
+import type { Product, ProductData } from '@/env'
 import { useEffect, useMemo, useState } from 'react'
-
-// import { ButtonFilter } from './ButtonFilter'
 
 import './styles.css'
 
 import { useStoreProduct } from '@/store/product'
+
 import { APIProducts } from '@/services/API'
-import { parseDataProducts } from '@/utils/parseDataProducts'
-import type { Product } from '@/env'
 
 export const SectionProducts = () => {
   const { productsData, setProductsData } = useStoreProduct()
   const [filter, setFilter] = useState('todos')
-  const [products, setProducts] = useState<Product[]>()
+  const [products, setProducts] = useState<ProductData>()
 
   const buttons = [
     { name: 'Todos', value: 'todos' },
@@ -23,8 +21,9 @@ export const SectionProducts = () => {
 
   useEffect(() => {
     APIProducts.getProducts().then((data) => {
-      const newData = parseDataProducts(data)
-      setProductsData(newData)
+      data = data || []
+
+      setProductsData(data)
     })
   }, [])
 
