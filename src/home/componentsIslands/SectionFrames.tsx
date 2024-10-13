@@ -1,26 +1,20 @@
-import type { FrameData } from '@/env'
-
 import { useEffect, useMemo, useState } from 'react'
 
 import { APIFrames } from '@/services/API'
 
 import './styles.css'
+import type { FrameData } from '@/env'
 
 export const SectionFrames = () => {
-  const [framesData, setFramesData] = useState<FrameData>([])
   const [frames, setFrames] = useState<FrameData>([])
 
   useEffect(() => {
     const getFrames = async (): Promise<void> => {
       const frameData = (await APIFrames.getFrames()) || []
-      setFramesData(frameData)
+      setFrames(frameData)
     }
     getFrames()
   }, [])
-
-  useMemo(() => {
-    setFrames(framesData)
-  }, [framesData])
 
   return (
     <div id="frames" className="min-h-[400px]">
