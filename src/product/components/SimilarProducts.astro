@@ -36,10 +36,20 @@ const { products } = Astro.props as { products: ProductData }
                   </span>
                   <h2 class="text-lg font-semibold">{title}</h2>
                   <div class="flex gap-2 items-center">
-                    <span class="text-xl font-medium text-local_text">
-                      {price}
-                    </span>
-                    <span>{descuento}</span>
+                    {descuento ? (
+                      <>
+                        <span class="text-xl font-medium text-local_text">
+                          <span>{descuento}</span>
+                        </span>
+                        <span class="text-sm font-medium text-black/45 line-through">
+                          {price}
+                        </span>
+                      </>
+                    ) : (
+                      <span class="text-xl font-medium text-local_text">
+                        {price}
+                      </span>
+                    )}
                   </div>
                 </div>
 
