@@ -13,7 +13,7 @@ export const SliderProduct = ({ image }: { image: Image[] }) => {
   const styleImageSelected = 'border-local_accent'
 
   return (
-    <div className="flex-1 flex flex-col gap-2">
+    <div className="flex-1 flex flex-col gap-2 pt-16 sm:pt-0">
       <section className="flex-1 overflow-hidden rounded-md">
         <img
           className="w-full h-full object-cover"
