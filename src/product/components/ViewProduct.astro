@@ -1,33 +1,10 @@
 ---
-import InformationProduct from './InformationProduct.astro'
-
 import { SliderProduct } from '../componentsIslands/SliderProcut'
-
-const {
-  id,
-  category,
-  collection,
-  brandProduct,
-  image,
-  title,
-  price,
-  origin,
-  descuento,
-  description,
-  features,
-  stock,
-  shell,
-} = Astro.props
+import InformationProduct from '@product/components/InformationProduct.astro'
 ---
 
-<section class="flex flex-col md:flex-row gap-4 md:h-[85vh] pb-10">
-  <SliderProduct image={image} client:load />
+<section class="flex flex-col md:flex-row gap-4">
+  <SliderProduct />
 
-  <InformationProduct
-    title={title}
-    price={price}
-    description={description}
-    features={features}
-    origin={origin}
-  />
+  <InformationProduct />
 </section>
