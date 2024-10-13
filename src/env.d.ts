@@ -2,6 +2,14 @@
 
 export type ProductData = Product[]
 
+export type FrameData = Frame[]
+
+export type Frame = {
+  id: string
+  title: string
+  image: string
+}
+
 export type Product = {
   id: number
   category: string
