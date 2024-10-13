@@ -218,10 +218,8 @@ const navWithMoreLinks: NavWithMoreLinks[] = [
       </ul>
     </nav>
 
-    <a
-      href="#"
-      target="_blank"
-      rel="noopener noreferrer"
+    <button
+      id="button-contact"
       class="gap-2 bg-local_accent rounded-md p-2 text-local_text_2 font-bold hidden md:flex"
     >
       <p>Contactar</p>
@@ -241,7 +239,7 @@ const navWithMoreLinks: NavWithMoreLinks[] = [
           d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1"
         ></path></svg
       >
-    </a>
+    </button>
 
     <div class="flex md:hidden">
       <button id="button-toggle">
@@ -288,4 +286,37 @@ const navWithMoreLinks: NavWithMoreLinks[] = [
       nav.classList.add('hidden')
     }
   }
+
+  const buttonContact = $('#button-contact')
+
+  if (buttonContact instanceof HTMLButtonElement) {
+    buttonContact.addEventListener('click', sendMessage)
+  }
+
+  function sendMessage() {
+    const message = 'Buenas, quiero realizar esta petición desde la web: \n'
+    window.open(
+      `https://api.whatsapp.com/send?phone=+573178784022&text=${encodeURIComponent(message)}`
+    )
+  }
+
+  // function sendMessage() {
+  //   const product = {
+  //     nombre: 'Producto Ejemplo',
+  //     precio: 100,
+  //     descripcion: 'Descripción del producto',
+  //     url: 'http://ejemplo.com/producto',
+  //   }
+
+  //   const message =
+  //     `Información del producto:\n` +
+  //     `nombre: ${product.nombre}, \n` +
+  //     `precio: ${product.precio}, \n` +
+  //     `descripcion: ${product.descripcion}, \n` +
+  //     `url: ${product.url}`
+
+  //   window.open(
+  //     `https://api.whatsapp.com/send?phone=+573178784022&text=${encodeURIComponent(message)}`
+  //   )
+  // }
 </script>
