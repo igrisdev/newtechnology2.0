@@ -1,27 +1,10 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useState } from 'react'
 
-import { useStoreProduct } from '@/store/product'
-import { APIProducts } from '@/services/API'
-
-import { parseDataProducts } from '@/utils/parseDataProducts'
 import type { Image } from '@/env'
 
-export const SliderProduct = ({ id }: { id: string }) => {
-  const { productsDataOne, setProductsDataOne } = useStoreProduct()
-  const [productImages, setProductImages] = useState<Image[]>([])
+export const SliderProduct = ({ image }: { image: Image[] }) => {
+  const [productImages] = useState<Image[]>(image)
   const [currentImage, setCurrentImage] = useState(0)
-
-  useEffect(() => {
-    APIProducts.getOneProduct(id).then((data) => {
-      const newData = parseDataProducts(data)
-
-      setProductsDataOne(newData)
-    })
-  }, [])
-
-  useMemo(() => {
-    setProductImages(productsDataOne[0]?.image)
-  }, [productsDataOne])
 
   const handleChangeImage = (index: number) => {
     setCurrentImage(index)

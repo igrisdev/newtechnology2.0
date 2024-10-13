@@ -1,5 +1,33 @@
 ---
 import { SliderProduct } from '../componentsIslands/SliderProcut'
+
+// import SliderProduct from './SliderProduct.astro'
+
+const {
+  id,
+  category,
+  collection,
+  brandProduct,
+  image,
+  title,
+  price,
+  descuento,
+  description,
+  features,
+  stock,
+  origin,
+  shell,
+} = Astro.props
+---
+
+<section class="flex flex-col md:flex-row gap-4 md:h-[85vh] pb-10">
+  <SliderProduct image={image} client:load />
+
+  <!-- <InformationProduct client:load /> -->
+</section>
+
+<!-- ---
+import { SliderProduct } from '../componentsIslands/SliderProcut'
 import { InformationProduct } from '@product/componentsIslands/InformationProduct'
 
 const { id } = Astro.props
@@ -9,4 +37,4 @@ const { id } = Astro.props
   <SliderProduct id={id} client:load />
 
   <InformationProduct client:load />
-</section>
+</section> -->
