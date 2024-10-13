@@ -82,12 +82,7 @@
       <div
         class="flex-1 flex w-full hover:bg-gradient-to-r from-local_background_3 to-local_background_2 rounded-md px-2 transition-colors"
       >
-        <a
-          href="#"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="flex items-center gap-2 w-full"
-        >
+        <button id="button-whatsapp" class="flex items-center gap-2 w-full">
           <div
             class="flex gap-2 bg-local_accent rounded-full p-2 text-local_text_2 font-bold"
           >
@@ -109,11 +104,11 @@
             >
           </div>
 
-          <div>
+          <div class="text-left">
             <p class="text-local_subtitle text-sm">Escríbenos</p>
             <p class="text-local_text">317 878 4022</p>
           </div>
-        </a>
+        </button>
       </div>
 
       <div
@@ -131,3 +126,20 @@
     </div>
   </div>
 </section>
+
+<script>
+  const $ = (selector: string) => document.querySelector(selector)
+
+  const buttonContact = $('#button-whatsapp')
+
+  if (buttonContact instanceof HTMLButtonElement) {
+    buttonContact.addEventListener('click', sendMessage)
+  }
+
+  function sendMessage() {
+    const message = 'Buenas, quiero realizar esta petición desde la web: \n'
+    window.open(
+      `https://api.whatsapp.com/send?phone=+573178784022&text=${encodeURIComponent(message)}`
+    )
+  }
+</script>
