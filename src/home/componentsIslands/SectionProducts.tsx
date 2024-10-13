@@ -1,14 +1,15 @@
 import type { Product, ProductData } from '@/env'
-import { useEffect, useMemo, useState } from 'react'
+
+import { useMemo, useState } from 'react'
 
 import './styles.css'
 
-import { useStoreProduct } from '@/store/product'
-
-import { APIProducts } from '@/services/API'
-
-export const SectionProducts = () => {
-  const { productsData, setProductsData } = useStoreProduct()
+export const SectionProducts = ({
+  productData,
+}: {
+  productData: ProductData
+}) => {
+  const [productsData] = useState<ProductData>(productData)
   const [filter, setFilter] = useState('todos')
   const [products, setProducts] = useState<ProductData>()
 
@@ -18,14 +19,6 @@ export const SectionProducts = () => {
     { name: 'Accesorios', value: 'accesorios' },
     { name: 'Partes', value: 'partes' },
   ]
-
-  useEffect(() => {
-    APIProducts.getProducts().then((data) => {
-      data = data || []
-
-      setProductsData(data)
-    })
-  }, [])
 
   useMemo(() => {
     setProducts(productsData)
