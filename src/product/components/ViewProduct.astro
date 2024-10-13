@@ -1,5 +1,7 @@
 ---
 import { SliderProduct } from '../componentsIslands/SliderProcut'
+import InformationProduct from './InformationProduct.astro'
+// import { InformationProduct } from '@product/componentsIslands/InformationProduct'
 
 // import SliderProduct from './SliderProduct.astro'
 
@@ -23,12 +25,18 @@ const {
 <section class="flex flex-col md:flex-row gap-4 md:h-[85vh] pb-10">
   <SliderProduct image={image} client:load />
 
-  <!-- <InformationProduct client:load /> -->
+  <InformationProduct
+    title={title}
+    price={price}
+    description={description}
+    features={features}
+    origin={origin}
+    client:load
+  />
 </section>
 
 <!-- ---
 import { SliderProduct } from '../componentsIslands/SliderProcut'
-import { InformationProduct } from '@product/componentsIslands/InformationProduct'
 
 const { id } = Astro.props
 ---
