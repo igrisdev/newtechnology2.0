@@ -1,0 +1,13 @@
+---
+import { APIProducts } from '@/services/API'
+import Layout from '@/product/layouts/Layout.astro'
+
+// Obtener todos los productos
+const allProducts = (await APIProducts.getProducts()) || []
+---
+
+<Layout title="Todos los Productos">
+  <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    {allProducts.map((product) => <p>{product.title}</p>)}
+  </section>
+</Layout>
