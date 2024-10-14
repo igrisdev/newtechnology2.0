@@ -128,18 +128,14 @@
 </section>
 
 <script>
+  import { sendMessage } from '@utils/SendMessageWhatsApp'
+
   const $ = (selector: string) => document.querySelector(selector)
 
   const buttonContact = $('#button-whatsapp')
 
   if (buttonContact instanceof HTMLButtonElement) {
-    buttonContact.addEventListener('click', sendMessage)
-  }
-
-  function sendMessage() {
     const message = 'Buenas, quiero realizar esta petición desde la web: \n'
-    window.open(
-      `https://api.whatsapp.com/send?phone=+573178784022&text=${encodeURIComponent(message)}`
-    )
+    buttonContact.addEventListener('click', () => sendMessage(message))
   }
 </script>
