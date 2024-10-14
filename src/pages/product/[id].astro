@@ -10,7 +10,6 @@ import { APIProducts } from '@/services/API'
 
 const { id } = Astro.params as { id: string }
 
-// export const prerender = false
 const fields: ProductData = (await APIProducts.getOneProduct(id)) || []
 
 const products: ProductData =
@@ -33,5 +32,3 @@ const products: ProductData =
 
   <SimilarProducts products={products} />
 </Layout>
-
-<!-- <SearchProducts /> -->

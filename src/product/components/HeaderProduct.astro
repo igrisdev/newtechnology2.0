@@ -1,3 +1,17 @@
+---
+type NavLink = {
+  name: string
+  href: string
+}
+
+const navLinks: NavLink[] = [
+  {
+    name: 'Todos los Productos',
+    href: '/products',
+  },
+]
+---
+
 <header id="header" class="max-w-screen-xl mx-auto px-0 xl:p-0 flex flex-col">
   <section
     class="justify-between pt-4 pb-2 hidden px-4 xl:px-0 mt-14 md:mt-0 sm:flex"
@@ -85,6 +99,55 @@
     <a href="/" class="text-local_title">
       <h1 class="text-xl font-bold">Now Technology</h1>
     </a>
+
+    <nav class="hidden md:flex">
+      <ul class="flex gap-4 text-sm font-medium text-local_subtitle">
+        {
+          navLinks.map(({ name, href }: NavLink) => (
+            <li class="hover:text-local_accent">
+              <a href={href}>{name}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <nav
+      id="nav"
+      class="hidden md:hidden absolute top-16 right-0 left-0 bg-local_background_2 z-50 w-full text-right"
+    >
+      <ul
+        class="flex flex-col gap-4 text-sm font-medium text-local_text_2 px-4 py-6"
+      >
+        {
+          navLinks.map(({ name, href }: NavLink) => (
+            <li class="nav-item text-lg">
+              <a href={href}>{name}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="flex md:hidden">
+      <button id="button-toggle">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="icon icon-tabler icons-tabler-outline icon-tabler-menu-2"
+          ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+            d="M4 6l16 0"></path><path d="M4 12l16 0"></path><path
+            d="M4 18l16 0"></path></svg
+        >
+      </button>
+    </div>
   </section>
 </header>
 
@@ -110,5 +173,18 @@
     } else {
       nav.classList.add('hidden')
     }
+  }
+
+  const buttonContact = $('#button-contact')
+
+  if (buttonContact instanceof HTMLButtonElement) {
+    buttonContact.addEventListener('click', sendMessage)
+  }
+
+  function sendMessage() {
+    const message = 'Buenas, quiero realizar esta petición desde la web: \n'
+    window.open(
+      `https://api.whatsapp.com/send?phone=+573178784022&text=${encodeURIComponent(message)}`
+    )
   }
 </script>

@@ -6,7 +6,6 @@ import CardProduct from '@/product/components/CardProduct.astro'
 
 import '@product/components/styles.css'
 
-// Obtener todos los productos
 const allProducts = (await APIProducts.getProducts()) || []
 ---
 

@@ -22,6 +22,10 @@ const navLinks: NavLink[] = [
     name: 'Ubicación',
     href: '#ubication',
   },
+  {
+    name: 'Todos los Productos',
+    href: '/products',
+  },
 ]
 
 const navWithMoreLinks: NavWithMoreLinks[] = [
@@ -299,24 +303,4 @@ const navWithMoreLinks: NavWithMoreLinks[] = [
       `https://api.whatsapp.com/send?phone=+573178784022&text=${encodeURIComponent(message)}`
     )
   }
-
-  // function sendMessage() {
-  //   const product = {
-  //     nombre: 'Producto Ejemplo',
-  //     precio: 100,
-  //     descripcion: 'Descripción del producto',
-  //     url: 'http://ejemplo.com/producto',
-  //   }
-
-  //   const message =
-  //     `Información del producto:\n` +
-  //     `nombre: ${product.nombre}, \n` +
-  //     `precio: ${product.precio}, \n` +
-  //     `descripcion: ${product.descripcion}, \n` +
-  //     `url: ${product.url}`
-
-  //   window.open(
-  //     `https://api.whatsapp.com/send?phone=+573178784022&text=${encodeURIComponent(message)}`
-  //   )
-  // }
 </script>
