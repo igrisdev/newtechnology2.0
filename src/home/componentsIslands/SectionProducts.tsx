@@ -3,31 +3,35 @@ import type { Product, ProductData } from '@/env'
 import { useEffect, useMemo, useState } from 'react'
 
 import './styles.css'
-import { APIProducts } from '@/services/API'
+// import { APIProducts } from '@/services/API'
 
-export const SectionProducts = () => {
-  const [productsData, setProductsData] = useState<ProductData>([])
-  const [filter, setFilter] = useState('todos')
-  const [products, setProducts] = useState<ProductData>()
+export const SectionProducts = ({
+  productsData,
+}: {
+  productsData: ProductData
+}) => {
+  // const [productsData, setProductsData] = useState<ProductData>([])
+  const [filter, setFilter] = useState('celulares')
+  const [products, setProducts] = useState<ProductData>(productsData)
 
   const buttons = [
-    { name: 'Todos', value: 'todos' },
+    // { name: 'Todos', value: 'todos' },
     { name: 'Celulares', value: 'celulares' },
     { name: 'Accesorios', value: 'accesorios' },
     { name: 'Partes', value: 'partes' },
   ]
 
-  useEffect(() => {
-    const getProducts = async (): Promise<void> => {
-      const productData: ProductData = (await APIProducts.getProducts()) || []
-      setProductsData(productData)
-    }
-    getProducts()
-  }, [])
+  // useEffect(() => {
+  //   const getProducts = async (): Promise<void> => {
+  //     const productData: ProductData = (await APIProducts.getProducts()) || []
+  //     setProductsData(productData)
+  //   }
+  //   getProducts()
+  // }, [])
 
-  useMemo(() => {
-    setProducts(productsData)
-  }, [productsData])
+  // useMemo(() => {
+  //   setProducts(productsData)
+  // }, [productsData])
 
   const stylesButtonSelected = 'bg-local_button text-local_text_2'
 
@@ -48,7 +52,7 @@ export const SectionProducts = () => {
   }, [filter])
 
   return (
-    <div className="flex flex-col gap-12 py-10">
+    <div className="flex flex-col gap-12 pb-10">
       <div className="flex justify-center items-center gap-2 flex-wrap">
         {buttons.map(({ name, value }: { name: string; value: string }) => (
           <button

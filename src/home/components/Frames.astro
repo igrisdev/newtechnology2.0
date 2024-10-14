@@ -1,5 +1,11 @@
 ---
+import type { FrameData } from '@/env'
+
 import { SectionFrames } from '@homeComponentsIslands/SectionFrames'
+
+import { APIFrames } from '@/services/API'
+
+const framesData: FrameData = (await APIFrames.getFrames()) || []
 ---
 
 <section class="flex flex-col gap-12 md:py-10 pt-16 pb-10" id="frames-top">
@@ -10,5 +16,5 @@ import { SectionFrames } from '@homeComponentsIslands/SectionFrames'
     <p class="text-center text-local_text">Encarga tu cuadro personalizado</p>
   </div>
 
-  <SectionFrames client:load />
+  <SectionFrames client:load framesData={framesData} />
 </section>
