@@ -2,13 +2,40 @@
 import { APIProducts } from '@/services/API'
 
 import Layout from '@/product/layouts/Layout.astro'
+import CardProduct from '@/product/components/CardProduct.astro'
+
+import '@product/components/styles.css'
 
 // Obtener todos los productos
 const allProducts = (await APIProducts.getProducts()) || []
 ---
 
 <Layout title="Todos los Productos">
-  <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-    {allProducts.map((product) => <p>{product.title}</p>)}
-  </section>
+  <div class="flex flex-col gap-12 pb-10">
+    <h2 class="text-2xl font-semibold text-center">Todos los productos</h2>
+
+    <div id={`${allProducts?.length < 2 ? 'two-products' : 'products'}`}>
+      {
+        allProducts?.length == 0 && (
+          <p class="text-center text-local_text">
+            No hay productos disponibles
+          </p>
+        )
+      }
+      {
+        allProducts?.map(({ id, category, image, title, price, descuento }) => {
+          return (
+            <CardProduct
+              id={id}
+              category={category}
+              image={image}
+              title={title}
+              price={price}
+              descuento={descuento}
+            />
+          )
+        })
+      }
+    </div>
+  </div>
 </Layout>

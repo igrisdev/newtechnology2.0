@@ -1,0 +1,46 @@
+---
+const { id, category, image, title, price, descuento } = Astro.props
+---
+
+<a href={`/product/${id}`} class="flex group">
+  <article class="flex flex-col gap-2">
+    <div class="min-h-[400px] max-h-[400px] overflow-hidden relative">
+      <div
+        class="absolute w-full h-full group-hover:bg-black opacity-10 z-10 transition-colors duration-200"
+      >
+      </div>
+      <img
+        class="w-full h-full object-cover"
+        src={image ? image[0].url : ''}
+        alt={title}
+      />
+    </div>
+
+    <div class="flex gap-2">
+      <div class="flex-1 flex flex-col justify-between">
+        <span class="text-local_text font-medium text-sm">
+          {category}
+        </span>
+        <h2 class="text-lg font-semibold">{title}</h2>
+        <div class="flex gap-2 items-center">
+          {
+            descuento ? (
+              <>
+                <span class="text-xl font-medium text-local_text">
+                  <span>{descuento}</span>
+                </span>
+                <span class="text-sm font-medium text-black/45 line-through">
+                  {price}
+                </span>
+              </>
+            ) : (
+              <span class="text-xl font-medium text-local_text">{price}</span>
+            )
+          }
+        </div>
+      </div>
+
+      <div class="text-red-500"></div>
+    </div>
+  </article>
+</a>
