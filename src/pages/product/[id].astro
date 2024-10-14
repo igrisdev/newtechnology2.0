@@ -10,7 +10,7 @@ import { APIProducts } from '@/services/API'
 
 const { id } = Astro.params as { id: string }
 
-export const prerender = false
+// export const prerender = false
 const fields: ProductData = (await APIProducts.getOneProduct(id)) || []
 
 const products: ProductData =
