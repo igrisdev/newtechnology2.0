@@ -10,7 +10,7 @@ const { products } = Astro.props as { products: ProductData }
 <div class="flex flex-col gap-12 pb-10">
   <h2 class="text-2xl font-semibold">Productos Similares</h2>
 
-  <div id={`${products?.length < 2 ? 'two-products' : 'products'}`}>
+  <div id={`${products?.length < 3 ? 'two-products' : 'products'}`}>
     {
       products?.length == 0 && (
         <p class="text-center text-local_text">No hay productos disponibles</p>
