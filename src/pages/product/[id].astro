@@ -21,6 +21,11 @@ const products: ProductData =
 
 <Layout title="id">
   <ViewProduct
+    id={id}
+    category={fields[0]?.category}
+    collection={fields[0]?.collection}
+    brandProduct={fields[0]?.brandProduct}
+    stock={fields[0]?.stock}
     image={fields[0]?.image}
     title={fields[0]?.title}
     price={fields[0]?.price}

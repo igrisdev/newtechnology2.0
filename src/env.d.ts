@@ -15,15 +15,15 @@ export type Product = {
   category: string
   collection: string
   brandProduct: string
-  image: Image[]
+  image?: Image[]
   title: string
   price: number | string
-  descuento?: number | string
+  descuento: number | string
   description: string[]
   features: string[]
   stock: number
   origin: string
-  shell: string
+  shell?: string
 }
 
 export type ProductsData = {

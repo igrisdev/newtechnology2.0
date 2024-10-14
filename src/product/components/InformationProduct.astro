@@ -1,7 +1,20 @@
 ---
+import type { Product } from '@/env'
 import { ButtonProductWhatsApp } from '../componentsIslands/ButtonProductWhatsApp'
 
-const { title, price, description, features, origin, descuento } = Astro.props
+const {
+  id,
+  category,
+  collection,
+  brandProduct,
+  title,
+  price,
+  description,
+  features,
+  origin,
+  descuento,
+  stock,
+} = Astro.props as Product
 ---
 
 <div class="flex-1 flex flex-col gap-2 overflow-hidden">
@@ -46,7 +59,20 @@ const { title, price, description, features, origin, descuento } = Astro.props
     </div>
   </div>
 
-  <ButtonProductWhatsApp client:load />
+  <ButtonProductWhatsApp
+    client:load
+    id={id}
+    category={category}
+    collection={collection}
+    brandProduct={brandProduct}
+    title={title}
+    price={price}
+    description={description}
+    features={features}
+    origin={origin}
+    descuento={descuento}
+    stock={stock}
+  />
 
   <div class="grid grid-cols-3 gap-4 mt-4">
     {
