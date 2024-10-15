@@ -19,8 +19,11 @@ export const SectionFrames = ({ framesData }: { framesData: FrameData }) => {
 
   return (
     <div id="frames" className="min-h-[400px]">
-      {frames.map(({ title, image }) => (
-        <article className="overflow-hidden rounded-md shadow-md hover:scale-[102%] hover:shadow-local_accent transition-all duration-300">
+      {frames.map(({ title, image }, index) => (
+        <article
+          className="overflow-hidden rounded-md shadow-md hover:scale-[102%] hover:shadow-local_accent transition-all duration-300 aspect-square"
+          key={title + index}
+        >
           <img className="w-full h-full object-cover" src={image} alt={title} />
         </article>
       ))}

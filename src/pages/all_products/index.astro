@@ -2,9 +2,10 @@
 import { APIProducts } from '@/services/API'
 
 import Layout from '@/product/layouts/Layout.astro'
-import CardProduct from '@/product/components/CardProduct.astro'
 
-import '@product/components/styles.css'
+import CardProductSmall from '@/allProducts/components/CardProductSmall.astro'
+
+import '@allProducts/components/styles.css'
 
 const allProducts = (await APIProducts.getProducts()) || []
 ---
@@ -13,7 +14,7 @@ const allProducts = (await APIProducts.getProducts()) || []
   <div class="flex flex-col gap-12 pb-10">
     <h2 class="text-2xl font-semibold text-center">Todos los productos</h2>
 
-    <div id={`${allProducts?.length < 2 ? 'two-products' : 'products'}`}>
+    <div class={`${allProducts?.length < 2 ? 'two-products' : 'products'}`}>
       {
         allProducts?.length == 0 && (
           <p class="text-center text-local_text">
@@ -24,7 +25,7 @@ const allProducts = (await APIProducts.getProducts()) || []
       {
         allProducts?.map(({ id, category, image, title, price, descuento }) => {
           return (
-            <CardProduct
+            <CardProductSmall
               id={id}
               category={category}
               image={image}

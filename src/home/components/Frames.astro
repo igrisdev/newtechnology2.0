@@ -16,5 +16,5 @@ const framesData: FrameData = (await APIFrames.getFrames()) || []
     <p class="text-center text-local_text">Encarga tu cuadro personalizado</p>
   </div>
 
-  <SectionFrames client:load framesData={framesData} />
+  <SectionFrames framesData={framesData} />
 </section>

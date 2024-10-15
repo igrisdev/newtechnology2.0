@@ -9,6 +9,7 @@
       "@homeLayouts/*": ["src/home/layouts/*"],
       "@assets/*": ["src/assets/*"],
       "@product/*": ["./src/product/*"],
+      "@allProducts/*": ["./src/allProducts/*"],
       "@utils/*": ["./src/utils/*"]
     },
     "jsx": "react-jsx",

@@ -56,7 +56,7 @@ export const SectionProducts = ({
       <div className="flex justify-center items-center gap-2 flex-wrap">
         {buttons.map(({ name, value }: { name: string; value: string }) => (
           <button
-            key={value}
+            key={value + name}
             onClick={(): void => handleClick(value)}
             className={
               'px-7 py-3 uppercase border-local_button border-[1px] font-bold text-sm text-local_text ' +
@@ -78,9 +78,9 @@ export const SectionProducts = ({
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             className="w-5 h-5"
           >
             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
