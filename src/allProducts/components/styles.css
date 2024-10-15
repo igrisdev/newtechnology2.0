@@ -1,7 +1,7 @@
 .products {
   display: grid;
   grid-template-columns: repeat(auto-fit, 250px);
-  grid-auto-rows: 400px;
+  grid-auto-rows: auto;
   gap: 20px;
   justify-content: space-evenly;
 
@@ -14,7 +14,6 @@
 .two-products {
   display: grid;
   grid-template-columns: repeat(auto-fit, 400px);
-  grid-auto-rows: 500px;
   gap: 20px;
   justify-content: start;
 
