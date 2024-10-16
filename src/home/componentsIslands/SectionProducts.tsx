@@ -67,7 +67,7 @@ export const SectionProducts = ({
           </button>
         ))}
         <a
-          href="/products"
+          href="/all_products"
           className="px-7 py-3 uppercase border-local_button border-[1px] font-bold text-sm text-local_text hover:bg-local_accent rounded-md hover:text-white flex items-center gap-2"
         >
           Ver Todos
