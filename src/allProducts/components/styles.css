@@ -1,6 +1,6 @@
 .products {
   display: grid;
-  grid-template-columns: repeat(auto-fit, 250px);
+  grid-template-columns: repeat(auto-fit, 200px);
   grid-auto-rows: auto;
   gap: 20px;
   justify-content: space-evenly;
@@ -11,7 +11,7 @@
   }
 }
 
-.two-products {
+/* .two-products {
   display: grid;
   grid-template-columns: repeat(auto-fit, 400px);
   gap: 20px;
@@ -26,4 +26,4 @@
       gap: 10px;
     }
   }
-}
+} */

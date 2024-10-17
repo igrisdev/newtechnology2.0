@@ -8,11 +8,67 @@ import CardProductSmall from '@/allProducts/components/CardProductSmall.astro'
 import '@allProducts/components/styles.css'
 
 const allProducts = (await APIProducts.getProducts()) || []
+
+const [...categories] = new Set(allProducts.map(({ category }) => category))
+
+const [...brands] = new Set(allProducts.map(({ brandProduct }) => brandProduct))
 ---
 
 <Layout title="Todos los Productos">
-  <aside>
-    <h2 class="text-xl font-medium text-center">Filtros</h2>
+  <aside class="flex flex-col gap-2 bg-local_background_4 p-2 mb-2 rounded-sm">
+    <h2 class="text-xl font-medium pb-2">Filtros</h2>
+
+    <section class="flex flex-col gap-6">
+      <div>
+        <h3 class="border-b-2 pb-2 mb-2">Categorías</h3>
+        <ul class="flex flex-col gap-2">
+          {
+            categories?.map((category) => (
+              <li class="flex gap-2 items-center">
+                <input type="checkbox" class="size-4 rounded-md" />
+                <span class="text-sm">{category}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <div>
+        <h3 class="border-b-2 pb-2 mb-2">Marcas</h3>
+        <ul class="flex flex-col gap-2">
+          {
+            brands?.map((category) => (
+              <li class="flex gap-2 items-center">
+                <input type="checkbox" class="size-4 rounded-md" />
+                <span class="text-sm">{category}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <div>
+        <h3 class="border-b-2 pb-2 mb-2">Descuesto</h3>
+        <ul class="flex flex-col gap-2">
+          <li class="flex gap-2 items-center">
+            <input type="checkbox" class="size-4 rounded-md" />
+            <span class="text-sm">Con descuento</span>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="border-b-2 pb-2 mb-2">Precio</h3>
+        <ul class="flex flex-col gap-2">
+          <li class="flex flex-col gap-2">
+            <input type="range" class="" />
+
+            <div>
+              <span class="text-sm">$0</span>
+              -
+              <span class="text-sm">$1,000,000</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
   </aside>
 
   <div class="flex-1 flex flex-col gap-12 pb-10">

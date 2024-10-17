@@ -1,16 +1,15 @@
 import type { Product, ProductData } from '@/env'
 
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 
 import './styles.css'
-// import { APIProducts } from '@/services/API'
+import { CardProduct } from '@/generalComponents/CardProduct'
 
 export const SectionProducts = ({
   productsData,
 }: {
   productsData: ProductData
 }) => {
-  // const [productsData, setProductsData] = useState<ProductData>([])
   const [filter, setFilter] = useState('celulares')
   const [products, setProducts] = useState<ProductData>(productsData)
 
@@ -20,18 +19,6 @@ export const SectionProducts = ({
     { name: 'Accesorios', value: 'accesorios' },
     { name: 'Partes', value: 'partes' },
   ]
-
-  // useEffect(() => {
-  //   const getProducts = async (): Promise<void> => {
-  //     const productData: ProductData = (await APIProducts.getProducts()) || []
-  //     setProductsData(productData)
-  //   }
-  //   getProducts()
-  // }, [])
-
-  // useMemo(() => {
-  //   setProducts(productsData)
-  // }, [productsData])
 
   const stylesButtonSelected = 'bg-local_button text-local_text_2'
 
@@ -111,47 +98,17 @@ export const SectionProducts = ({
             brandProduct,
             origin,
             shell,
-          }) => {
+          }: Product) => {
             return (
-              <a href={`/product/${id}`} key={id} className="flex group">
-                <article className="flex flex-col gap-2">
-                  <div className="min-h-[400px] max-h-[400px] overflow-hidden relative">
-                    <div className="absolute w-full h-full group-hover:bg-black opacity-10 z-10 transition-colors duration-200"></div>
-                    <img
-                      className="w-full h-full object-cover"
-                      src={image ? image[0].url : ''}
-                      alt={title}
-                    />
-                  </div>
-
-                  <div className="flex gap-2">
-                    <div className="flex-1 flex flex-col justify-between">
-                      <span className="text-local_text font-medium text-sm">
-                        {category}
-                      </span>
-                      <h2 className="text-lg font-semibold">{title}</h2>
-                      <div className="flex gap-2 items-center">
-                        {descuento ? (
-                          <>
-                            <span className="text-xl font-medium text-local_text">
-                              <span>{descuento}</span>
-                            </span>
-                            <span className="text-sm font-medium text-black/45 line-through">
-                              {price}
-                            </span>
-                          </>
-                        ) : (
-                          <span className="text-xl font-medium text-local_text">
-                            {price}
-                          </span>
-                        )}
-                      </div>
-                    </div>
-
-                    <div className="text-red-500"></div>
-                  </div>
-                </article>
-              </a>
+              <CardProduct
+                key={id}
+                id={id}
+                image={image}
+                title={title}
+                price={price}
+                descuento={descuento}
+                category={category}
+              />
             )
           }
         )}

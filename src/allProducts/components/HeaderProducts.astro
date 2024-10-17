@@ -1,4 +1,6 @@
 ---
+import SearchProducts from '@allProducts/components/SearchProducts.astro'
+
 type NavLink = {
   name: string
   href: string
@@ -12,7 +14,10 @@ const navLinks: NavLink[] = [
 ]
 ---
 
-<header id="header" class="max-w-screen-xl mx-auto px-0 xl:p-0 flex flex-col">
+<header
+  id="header"
+  class="max-w-screen-xl mx-auto px-0 xl:p-0 flex flex-col mb-4"
+>
   <section
     class="justify-between pt-4 pb-2 hidden px-4 xl:px-0 mt-14 md:mt-0 sm:flex"
   >
@@ -100,33 +105,14 @@ const navLinks: NavLink[] = [
       <h1 class="text-xl font-bold">Now Technology</h1>
     </a>
 
-    <nav class="hidden md:flex">
-      <ul class="flex gap-4 text-sm font-medium text-local_subtitle">
-        {
-          navLinks.map(({ name, href }: NavLink) => (
-            <li class="hover:text-local_accent">
-              <a href={href}>{name}</a>
-            </li>
-          ))
-        }
-      </ul>
-    </nav>
+    <SearchProducts />
+
+    <nav class="hidden md:flex"></nav>
 
     <nav
       id="nav"
       class="hidden md:hidden absolute top-16 right-0 left-0 bg-local_background_2 z-50 w-full text-right"
     >
-      <ul
-        class="flex flex-col gap-4 text-sm font-medium text-local_text_2 px-4 py-6"
-      >
-        {
-          navLinks.map(({ name, href }: NavLink) => (
-            <li class="nav-item text-lg">
-              <a href={href}>{name}</a>
-            </li>
-          ))
-        }
-      </ul>
     </nav>
 
     <div class="flex md:hidden">
