@@ -83,34 +83,36 @@ export const SectionProducts = ({
             No hay productos disponibles
           </p>
         )}
-        {products?.map(
-          ({
-            id,
-            category,
-            collection,
-            image,
-            title,
-            price,
-            descuento,
-            description,
-            stock,
-            brandProduct,
-            origin,
-            shell,
-          }: Product) => {
-            return (
-              <CardProduct
-                key={id}
-                id={id}
-                image={image}
-                title={title}
-                price={price}
-                descuento={descuento}
-                category={category}
-              />
-            )
-          }
-        )}
+        {products
+          ?.slice(0, 10)
+          .map(
+            ({
+              id,
+              category,
+              collection,
+              image,
+              title,
+              price,
+              descuento,
+              description,
+              stock,
+              brandProduct,
+              origin,
+              shell,
+            }: Product) => {
+              return (
+                <CardProduct
+                  key={id}
+                  id={id}
+                  image={image}
+                  title={title}
+                  price={price}
+                  descuento={descuento}
+                  category={category}
+                />
+              )
+            }
+          )}
       </div>
     </div>
   )

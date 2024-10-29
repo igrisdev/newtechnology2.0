@@ -82,12 +82,12 @@ const { title } = Astro.props
   const scrollToTopButton = document.getElementById('scroll-to-top')
 
   if (scrollToTopButton instanceof HTMLButtonElement) {
-    if (window.screenY < 1024) {
+    if (window.screenY < 804) {
       scrollToTopButton.style.display = 'none'
     }
 
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 1024) {
+      if (window.scrollY > 804) {
         scrollToTopButton.style.display = 'block'
       } else {
         scrollToTopButton.style.display = 'none'
