@@ -46,8 +46,10 @@ const [...brands] = new Set(
     <AsideFilters client:load categories={categories} brands={brands} />
   </div>
 
-  <div class="hidden sm:flex">
-    <AsideFilters client:load categories={categories} brands={brands} />
+  <div class="relative hidden sm:block">
+    <div class="sticky top-0 z-50">
+      <AsideFilters client:load categories={categories} brands={brands} />
+    </div>
   </div>
 
   <div class="flex-1 flex flex-col gap-12 pb-10">

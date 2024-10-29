@@ -6,7 +6,7 @@ export const AsideFilters = ({
   brands: string[]
 }) => {
   return (
-    <aside className="flex flex-col gap-2 bg-local_background_4 p-2 mb-2 rounded-sm w-full">
+    <aside className="flex flex-col gap-2 bg-local_background_4 p-2 mb-2 rounded-sm w-full min-h-[80vh]">
       <h2 className="text-xl font-medium pb-2">Filtros</h2>
 
       <section className="flex flex-col gap-6">
