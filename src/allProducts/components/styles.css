@@ -5,9 +5,9 @@
   gap: 20px;
   justify-content: space-evenly;
 
-  @media (width <= 450px) {
-    grid-template-columns: repeat(auto-fit, 100%);
-    gap: 10px;
+  @media (width <= 639px) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(400px, 100%), 1fr));
   }
 }
 

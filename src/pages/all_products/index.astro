@@ -6,6 +6,7 @@ import Layout from '@allProducts/layouts/Layout.astro'
 import CardProductSmall from '@/allProducts/components/CardProductSmall.astro'
 
 import '@allProducts/components/styles.css'
+
 import { AsideFilters } from '@/allProducts/componentsIslands/AsideFilters'
 
 const allProducts = (await APIProducts.getProducts()) || []
@@ -21,7 +22,7 @@ const [...brands] = new Set(
 
 <Layout title="Todos los Productos">
   <div
-    class="absolute top-0 bottom-0 right-0 left-0 z-50 bg-black/20 flex pr-[20%] -translate-x-full transition-transform sm:-translate-x-full"
+    class="fixed top-0 bottom-0 right-0 left-0 z-50 bg-black/20 flex pr-[20%] -translate-x-full transition-transform sm:-translate-x-full"
   >
     <button
       id="button-close"

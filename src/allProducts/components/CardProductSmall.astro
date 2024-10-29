@@ -5,7 +5,7 @@ const { id, category, image, title, price, descuento } = Astro.props
 <a href={`/product/${id}`} class="flex group">
   <article class="flex flex-col gap-2">
     <div
-      class="min-h-[200px] max-h-[200px] aspect-square overflow-hidden relative"
+      class="sm:min-h-[200px] sm:max-h-[200px] aspect-square overflow-hidden relative"
     >
       <div
         class="absolute w-full h-full group-hover:bg-black opacity-10 z-10 transition-colors duration-200"
