@@ -12,7 +12,11 @@ const allProducts = (await APIProducts.getProducts()) || []
 
 const [...categories] = new Set(allProducts.map(({ category }) => category))
 
-const [...brands] = new Set(allProducts.map(({ brandProduct }) => brandProduct))
+const [...brands] = new Set(
+  allProducts
+    .map(({ brandProduct }) => brandProduct)
+    .filter((item): item is string => item !== undefined)
+)
 ---
 
 <Layout title="Todos los Productos">

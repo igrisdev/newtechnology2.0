@@ -3,7 +3,7 @@ export const AsideFilters = ({
   brands,
 }: {
   categories: string[]
-  brands: (string | undefined)[]
+  brands: string[]
 }) => {
   return (
     <aside className="flex flex-col gap-2 bg-local_background_4 p-2 mb-2 rounded-sm">
