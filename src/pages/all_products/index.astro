@@ -20,7 +20,34 @@ const [...brands] = new Set(
 ---
 
 <Layout title="Todos los Productos">
-  <AsideFilters client:load categories={categories} brands={brands} />
+  <div
+    class="absolute top-0 bottom-0 right-0 left-0 z-50 bg-black/20 flex pr-[20%] -translate-x-full transition-transform sm:-translate-x-full"
+  >
+    <button
+      id="button-close"
+      class="text-local_icon_2 absolute top-4 right-[23%]"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="icon icon-tabler icons-tabler-outline icon-tabler-x"
+        ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+          d="M18 6l-12 12"></path><path d="M6 6l12 12"></path></svg
+      >
+    </button>
+    <AsideFilters client:load categories={categories} brands={brands} />
+  </div>
+
+  <div class="hidden sm:flex">
+    <AsideFilters client:load categories={categories} brands={brands} />
+  </div>
 
   <div class="flex-1 flex flex-col gap-12 pb-10">
     <div class={`${allProducts?.length < 2 ? 'two-products' : 'products'}`}>
@@ -48,3 +75,15 @@ const [...brands] = new Set(
     </div>
   </div>
 </Layout>
+
+<script is:inline>
+  const buttonToggle = document.querySelector('#button-close')
+  const containerAside = buttonToggle.parentElement
+
+  function buttonClose() {
+    containerAside.classList.remove('translate-x-0')
+    containerAside.classList.add('-translate-x-full')
+  }
+
+  buttonToggle.addEventListener('click', buttonClose)
+</script>

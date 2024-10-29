@@ -135,6 +135,14 @@ const navLinks: NavLink[] = [
       </button>
     </div>
   </section>
+
+  <section class="block sm:hidden pt-20 px-4 xl:px-0">
+    <button
+      id="button-open"
+      class="bg-local_background_4 px-6 py-2 rounded-full font-medium"
+      >Filtros</button
+    >
+  </section>
 </header>
 
 <script>
@@ -173,4 +181,21 @@ const navLinks: NavLink[] = [
       `https://api.whatsapp.com/send?phone=+573178784022&text=${encodeURIComponent(message)}`
     )
   }
+
+  const buttonOpen = $('#button-open')
+  const buttonParent = $('#button-close')?.parentElement
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 668) {
+      buttonParent?.classList.remove('translate-x-0')
+      buttonParent?.classList.add('-translate-x-full')
+    }
+  })
+
+  function asideOpen() {
+    buttonParent?.classList.remove('-translate-x-full')
+    buttonParent?.classList.add('translate-x-0')
+  }
+
+  buttonOpen?.addEventListener('click', asideOpen)
 </script>
