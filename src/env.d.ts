@@ -13,16 +13,16 @@ export type Frame = {
 export type Product = {
   id: number
   category: string
-  collection: string
-  brandProduct: string
+  collection?: string
+  brandProduct?: string
   image?: Image[]
-  title: string
-  price: number | string
-  descuento: number | string
-  description: string[]
-  features: string[]
-  stock: number
-  origin: string
+  title?: string
+  price?: number | string
+  descuento?: number | string
+  description?: string[]
+  features?: string[]
+  stock?: number
+  origin?: string
   shell?: string
 }
 

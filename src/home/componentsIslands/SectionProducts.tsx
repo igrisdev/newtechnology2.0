@@ -14,7 +14,6 @@ export const SectionProducts = ({
   const [products, setProducts] = useState<ProductData>(productsData)
 
   const buttons = [
-    // { name: 'Todos', value: 'todos' },
     { name: 'Celulares', value: 'celulares' },
     { name: 'Accesorios', value: 'accesorios' },
     { name: 'Partes', value: 'partes' },
