@@ -35,7 +35,7 @@ export const APIProducts = {
     collection: collectionProduct,
   }: {
     id: number | string
-    collection: string
+    collection?: string
   }) => {
     try {
       const response = await fetch(

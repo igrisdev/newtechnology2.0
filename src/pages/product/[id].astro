@@ -15,7 +15,7 @@ const fields: ProductData = (await APIProducts.getOneProduct(id)) || []
 const products: ProductData =
   (await APIProducts.getSimilarProducts({
     id,
-    collection: fields[0]?.collection,
+    collection: fields[0].collection,
   })) || []
 ---
 
