@@ -10,20 +10,3 @@
     grid-template-columns: repeat(auto-fit, minmax(min(400px, 100%), 1fr));
   }
 }
-
-/* .two-products {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, 400px);
-  gap: 20px;
-  justify-content: start;
-
-  @media (width <= 858px) {
-    justify-content: space-evenly;
-    gap: 10px;
-
-    @media (width <= 450px) {
-      grid-template-columns: repeat(auto-fit, 100%);
-      gap: 10px;
-    }
-  }
-} */
