@@ -3,11 +3,10 @@ import { APIProducts } from '@/services/API'
 
 import Layout from '@allProducts/layouts/Layout.astro'
 
-import CardProductSmall from '@/allProducts/components/CardProductSmall.astro'
-
 import '@allProducts/components/styles.css'
 
 import { AsideFilters } from '@/allProducts/componentsIslands/AsideFilters'
+import AllProducts from '@/allProducts/componentsIslands/AllProducts'
 
 const allProducts = (await APIProducts.getProducts()) || []
 
@@ -52,31 +51,7 @@ const [...brands] = new Set(
     </div>
   </div>
 
-  <div class="flex-1 flex flex-col gap-12 pb-10">
-    <div class={`${allProducts?.length < 2 ? 'two-products' : 'products'}`}>
-      {
-        allProducts?.length == 0 && (
-          <p class="text-center text-local_text">
-            No hay productos disponibles
-          </p>
-        )
-      }
-      {
-        allProducts?.map(({ id, category, image, title, price, descuento }) => {
-          return (
-            <CardProductSmall
-              id={id}
-              category={category}
-              image={image}
-              title={title}
-              price={price}
-              descuento={descuento}
-            />
-          )
-        })
-      }
-    </div>
-  </div>
+  <AllProducts client:load allProducts={allProducts} />
 </Layout>
 
 <script is:inline>
