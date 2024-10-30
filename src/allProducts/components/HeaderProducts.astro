@@ -1,5 +1,5 @@
 ---
-import SearchProducts from '@allProducts/components/SearchProducts.astro'
+import { SearchProducts } from '@allProducts/componentsIslands/SearchProducts'
 
 type NavLink = {
   name: string
@@ -105,7 +105,7 @@ const navLinks: NavLink[] = [
       <h1 class="text-xl font-bold">Now Technology</h1>
     </a>
 
-    <SearchProducts />
+    <SearchProducts client:load />
 
     <nav class="hidden md:flex"></nav>
 

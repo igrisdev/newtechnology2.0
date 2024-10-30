@@ -8,4 +8,5 @@ export const useStoreProducts = create((set) => ({
   setCacheProducts: (newCacheProducts) =>
     set({ cacheProducts: newCacheProducts }),
   setProducts: (newProducts) => set({ products: newProducts }),
+  setSearchProducts: (newProducts) => set({ products: newProducts }),
 }))

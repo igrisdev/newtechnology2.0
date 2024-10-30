@@ -11,11 +11,13 @@ export default function AllProducts({
 }: {
   allProducts: ProductData
 }) {
-  const { setProducts, products, setLoading, loading } = useStoreProducts()
+  const { setProducts, products, setLoading, loading, setCacheProducts } =
+    useStoreProducts()
 
   useEffect(() => {
     if (AllProducts.length > 0) {
       setProducts(allProducts)
+      setCacheProducts(allProducts)
       setLoading(false)
     } else {
       setLoading(false)
