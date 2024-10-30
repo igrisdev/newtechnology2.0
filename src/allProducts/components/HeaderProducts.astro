@@ -1,5 +1,6 @@
 ---
 import { SearchProducts } from '@allProducts/componentsIslands/SearchProducts'
+import { TextoButton } from '@allProducts/componentsIslands/TextoButton'
 
 type NavLink = {
   name: string
@@ -140,8 +141,13 @@ const navLinks: NavLink[] = [
     <button
       id="button-open"
       class="bg-local_background_4 px-6 py-2 rounded-full font-medium"
-      >Filtros</button
     >
+      Filtros
+    </button>
+
+    <button class="pl-4">
+      <TextoButton client:load />
+    </button>
   </section>
 </header>
 

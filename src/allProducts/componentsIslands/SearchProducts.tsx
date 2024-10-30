@@ -1,6 +1,5 @@
 import type { Product } from '@/env'
 import { useStoreProducts } from '@/stores/storeProducts'
-import { useEffect } from 'react'
 
 export const SearchProducts = () => {
   const { cacheProducts, setSearchProducts } = useStoreProducts()
