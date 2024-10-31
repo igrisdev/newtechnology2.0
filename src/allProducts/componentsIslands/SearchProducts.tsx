@@ -1,25 +1,57 @@
 import type { Product } from '@/env'
+
+import { useState } from 'react'
+
 import { useStoreProducts } from '@/stores/storeProducts'
+
+const debounce = (func: Function, delay: number) => {
+  let timeoutId: ReturnType<typeof setTimeout> | undefined
+  return (...args: any[]) => {
+    if (timeoutId) clearTimeout(timeoutId)
+    timeoutId = setTimeout(() => {
+      func.apply(null, args)
+    }, delay)
+  }
+}
 
 export const SearchProducts = () => {
   const { cacheProducts, setSearchProducts } = useStoreProducts()
+  const [searchTerm, setSearchTerm] = useState('')
 
-  const searchProducts = (e: any) => {
-    const value = e.target.value
+  const handleSearch = debounce((item: string) => {
+    const value = item.toLowerCase().trim()
+    const newValue = value.split(' ')
 
-    const newValue = value.toLowerCase().trim().split(' ') as string[]
+    const filterLetters = newValue.length > 3
 
-    const products2 = cacheProducts
-      .map((product: Product) => {
-        for (const word of newValue) {
-          if (product?.title?.toLowerCase().includes(word)) {
-            return product
-          }
-        }
-      })
-      .filter((product: Product) => product !== undefined)
+    const products2 = cacheProducts.filter((product: Product) => {
+      if (filterLetters) {
+        return (
+          product?.title?.toLowerCase().includes(item) ||
+          product?.category?.toLowerCase().includes(item) ||
+          product?.brandProduct?.toLowerCase().includes(item) ||
+          product?.collection?.toLowerCase().includes(item) ||
+          product?.origin?.toLowerCase().includes(item)
+        )
+      }
+
+      return newValue.some(
+        (word) =>
+          product?.title?.toLowerCase().includes(word) ||
+          product?.category?.toLowerCase().includes(word) ||
+          product?.brandProduct?.toLowerCase().includes(word) ||
+          product?.collection?.toLowerCase().includes(word) ||
+          product?.origin?.toLowerCase().includes(word)
+      )
+    })
 
     setSearchProducts(products2)
+  }, 300)
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value
+    setSearchTerm(value)
+    handleSearch(value)
   }
 
   return (
@@ -28,7 +60,8 @@ export const SearchProducts = () => {
         type="text"
         className="bg-transparent w-full h-full p-2"
         placeholder="Buscar productos"
-        onChange={searchProducts}
+        value={searchTerm}
+        onChange={handleChange}
       />
 
       <svg
