@@ -2,7 +2,8 @@
 import type { ProductData } from '@/env'
 
 import './styles.css'
-import CardProduct from './CardProduct.astro'
+
+import CardProduct from '@components/product/components/CardProduct.astro'
 
 const { products } = Astro.props as { products: ProductData }
 ---

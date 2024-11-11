@@ -1,12 +1,11 @@
 ---
 import type { ProductData } from '@/env'
 
-import Layout from '@/product/layouts/Layout.astro'
+import SimilarProducts from '@/components/product/components/SimilarProducts.astro'
+import ViewProduct from '@/components/product/components/ViewProduct.astro'
+import Layout from '@/layouts/LayoutProduct.astro'
 
-import SimilarProducts from '@/product/components/SimilarProducts.astro'
-import ViewProduct from '@/product/components/ViewProduct.astro'
-
-import { APIProducts } from '@/services/API'
+import { APIProducts } from '@services/API'
 
 const { id } = Astro.params as { id: string }
 

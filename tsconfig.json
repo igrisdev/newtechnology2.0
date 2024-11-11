@@ -3,14 +3,10 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"],
-      "@homeComponents/*": ["src/home/components/*"],
-      "@homeComponentsIslands/*": ["src/home/componentsIslands/*"],
-      "@homeLayouts/*": ["src/home/layouts/*"],
-      "@assets/*": ["src/assets/*"],
-      "@product/*": ["./src/product/*"],
-      "@allProducts/*": ["./src/allProducts/*"],
+      "@assets/*": ["./src/assets/*"],
       "@utils/*": ["./src/utils/*"],
+      "@/*": ["./src/*"],
+      "@services/*": ["./src/services/*"],
       "@components/*": ["./src/components/*"],
       "@layouts/*": ["./src/layouts/*"]
     },

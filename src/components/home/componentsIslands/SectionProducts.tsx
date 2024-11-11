@@ -1,41 +1,42 @@
-import type { Product, ProductData } from '@/env'
+import type { Product, ProductData } from "@/env";
 
-import { useMemo, useState } from 'react'
+import { useMemo, useState } from "react";
 
-import './styles.css'
-import { CardProduct } from '@/generalComponents/CardProduct'
+import "./styles.css";
+
+import { CardProduct } from "@/generalComponents/CardProduct";
 
 export const SectionProducts = ({
   productsData,
 }: {
-  productsData: ProductData
+  productsData: ProductData;
 }) => {
-  const [filter, setFilter] = useState('celulares')
-  const [products, setProducts] = useState<ProductData>(productsData)
+  const [filter, setFilter] = useState("celulares");
+  const [products, setProducts] = useState<ProductData>(productsData);
 
   const buttons = [
-    { name: 'Celulares', value: 'celulares' },
-    { name: 'Accesorios', value: 'accesorios' },
-    { name: 'Partes', value: 'partes' },
-  ]
+    { name: "Celulares", value: "celulares" },
+    { name: "Accesorios", value: "accesorios" },
+    { name: "Partes", value: "partes" },
+  ];
 
-  const stylesButtonSelected = 'bg-local_button text-local_text_2'
+  const stylesButtonSelected = "bg-local_button text-local_text_2";
 
   const handleClick = (value: string): void => {
-    setFilter((prevState: string) => (prevState === value ? prevState : value))
-  }
+    setFilter((prevState: string) => (prevState === value ? prevState : value));
+  };
 
   const handleFilterProducts = (): void => {
     const newProducts = productsData?.filter(({ collection }: Product) =>
-      filter == 'todos' ? productsData : collection == filter
-    )
+      filter == "todos" ? productsData : collection == filter
+    );
 
-    setProducts(newProducts)
-  }
+    setProducts(newProducts);
+  };
 
   useMemo(() => {
-    handleFilterProducts()
-  }, [filter])
+    handleFilterProducts();
+  }, [filter]);
 
   return (
     <div className="flex flex-col gap-12 pb-10">
@@ -45,8 +46,8 @@ export const SectionProducts = ({
             key={value + name}
             onClick={(): void => handleClick(value)}
             className={
-              'px-7 py-3 uppercase border-local_button border-[1px] font-bold text-sm text-local_text ' +
-              (filter === value ? stylesButtonSelected : '')
+              "px-7 py-3 uppercase border-local_button border-[1px] font-bold text-sm text-local_text " +
+              (filter === value ? stylesButtonSelected : "")
             }
           >
             {name}
@@ -110,10 +111,10 @@ export const SectionProducts = ({
                   descuento={descuento}
                   category={category}
                 />
-              )
+              );
             }
           )}
       </div>
     </div>
-  )
-}
+  );
+};

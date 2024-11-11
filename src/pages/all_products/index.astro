@@ -1,12 +1,10 @@
 ---
 import { APIProducts } from '@/services/API'
 
-import Layout from '@allProducts/layouts/Layout.astro'
+import Layout from '@layouts/LayoutAllProducts.astro'
 
-import '@allProducts/components/styles.css'
-
-import { AsideFilters } from '@/allProducts/componentsIslands/AsideFilters'
-import AllProducts from '@/allProducts/componentsIslands/AllProducts'
+import AllProducts from '@/components/allProducts/componentsIslands/AllProducts'
+import { AsideFilters } from '@/components/allProducts/componentsIslands/AsideFilters'
 
 const allProducts = (await APIProducts.getProducts()) || []
 

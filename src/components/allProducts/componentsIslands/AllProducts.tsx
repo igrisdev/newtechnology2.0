@@ -1,32 +1,32 @@
-import type { Product, ProductData } from '@/env'
+import type { Product, ProductData } from "@/env";
 
-import { useEffect } from 'react'
+import { useEffect } from "react";
 
-import { useStoreProducts } from '@/stores/storeProducts'
+import { useStoreProducts } from "@/stores/storeProducts";
 
-import CardProductSmall from '@allProducts/componentsIslands/CardProductSmall'
+import CardProductSmall from "@components/allProducts/componentsIslands/CardProductSmall";
 
 export default function AllProducts({
   allProducts,
 }: {
-  allProducts: ProductData
+  allProducts: ProductData;
 }) {
   const { setProducts, products, setLoading, loading, setCacheProducts } =
-    useStoreProducts()
+    useStoreProducts();
 
   useEffect(() => {
     if (AllProducts.length > 0) {
-      setProducts(allProducts)
-      setCacheProducts(allProducts)
-      setLoading(false)
+      setProducts(allProducts);
+      setCacheProducts(allProducts);
+      setLoading(false);
     } else {
-      setLoading(false)
+      setLoading(false);
     }
-  }, [])
+  }, []);
 
   return (
     <div className="flex-1 flex flex-col gap-12 pb-10">
-      <div className={`${products?.length < 2 ? 'two-products' : 'products'}`}>
+      <div className={`${products?.length < 2 ? "two-products" : "products"}`}>
         {loading && <p className="text-center text-local_text">Cargando...</p>}
 
         {!loading && products?.length == 0 && (
@@ -46,10 +46,10 @@ export default function AllProducts({
                 price={price}
                 descuento={descuento}
               />
-            )
+            );
           }
         )}
       </div>
     </div>
-  )
+  );
 }
