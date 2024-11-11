@@ -16,7 +16,6 @@ export const AsideFilters = ({
             {categories?.map((category) => (
               <li className="flex gap-2 items-center" key={category}>
                 <label
-                  htmlFor={category}
                   className="flex justify-center items-center gap-2"
                 >
                   <input
