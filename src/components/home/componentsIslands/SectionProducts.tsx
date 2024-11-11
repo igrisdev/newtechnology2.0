@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 
 import "./styles.css";
 
-import { CardProduct } from "@/components/CardProduct";
+import { CardProduct } from "@/components/general/CardProduct";
 
 export const SectionProducts = ({
   productsData,
