@@ -1,57 +1,16 @@
-import type { Product } from '@/env'
 
 import { useState } from 'react'
 
-import { useStoreProducts } from '@/stores/storeProducts'
-
-const debounce = (func: Function, delay: number) => {
-  let timeoutId: ReturnType<typeof setTimeout> | undefined
-  return (...args: any[]) => {
-    if (timeoutId) clearTimeout(timeoutId)
-    timeoutId = setTimeout(() => {
-      func.apply(null, args)
-    }, delay)
-  }
-}
+import { useFilterAllProducts } from '@/hooks/useFilterAllProducts'
 
 export const SearchProducts = () => {
-  const { cacheProducts, setSearchProducts } = useStoreProducts()
+  const { filterProducts } = useFilterAllProducts()
   const [searchTerm, setSearchTerm] = useState('')
-
-  const handleSearch = debounce((item: string) => {
-    const value = item.toLowerCase().trim()
-    const newValue = value.split(' ')
-
-    const filterLetters = newValue.length > 3
-
-    const products2 = cacheProducts.filter((product: Product) => {
-      if (filterLetters) {
-        return (
-          product?.title?.toLowerCase().includes(item) ||
-          product?.category?.toLowerCase().includes(item) ||
-          product?.brandProduct?.toLowerCase().includes(item) ||
-          product?.collection?.toLowerCase().includes(item) ||
-          product?.origin?.toLowerCase().includes(item)
-        )
-      }
-
-      return newValue.some(
-        (word) =>
-          product?.title?.toLowerCase().includes(word) ||
-          product?.category?.toLowerCase().includes(word) ||
-          product?.brandProduct?.toLowerCase().includes(word) ||
-          product?.collection?.toLowerCase().includes(word) ||
-          product?.origin?.toLowerCase().includes(word)
-      )
-    })
-
-    setSearchProducts(products2)
-  }, 300)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value
+    filterProducts({ search: value })
     setSearchTerm(value)
-    handleSearch(value)
   }
 
   return (

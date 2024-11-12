@@ -39,6 +39,7 @@ export default function AllProducts({
           ({ id, category, image, title, price, descuento }: Product) => {
             return (
               <CardProductSmall
+                key={id}
                 id={id}
                 category={category}
                 image={image}
