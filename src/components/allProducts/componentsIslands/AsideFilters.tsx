@@ -1,3 +1,5 @@
+import { useFilterAllProducts } from "@hooks/useFilterAllProducts"
+
 export const AsideFilters = ({
   categories,
   brands,
@@ -5,6 +7,10 @@ export const AsideFilters = ({
   categories: string[]
   brands: string[]
 }) => {
+  const { filter, handlePrice } = useFilterAllProducts()
+
+  const { price } = filter
+
   return (
     <aside className="flex flex-col gap-2 bg-local_background_4 p-2 mb-2 rounded-sm w-full min-h-[80vh]">
       <h2 className="text-xl font-medium pb-2">Filtros</h2>
@@ -35,7 +41,6 @@ export const AsideFilters = ({
             {brands?.map((brand) => (
               <li className="flex gap-2 items-center" key={brand}>
                 <label
-                  htmlFor={brand}
                   className="flex justify-center items-center gap-2"
                 >
                   <input
@@ -54,7 +59,6 @@ export const AsideFilters = ({
           <ul className="flex flex-col gap-2">
             <li className="flex gap-2 items-center">
               <label
-                htmlFor="descuento"
                 className="flex justify-center items-center gap-2"
               >
                 <input
@@ -74,8 +78,9 @@ export const AsideFilters = ({
               <input
                 type="range"
                 min={0}
-                max={1000}
-                defaultValue={0}
+                max={6000000}
+                defaultValue={price}
+                onChange={(e) => handlePrice({ price: Number(e.target.value) })}
                 className="w-full"
               />
               <div>

@@ -4,13 +4,13 @@ import { useState } from 'react'
 import { useFilterAllProducts } from '@/hooks/useFilterAllProducts'
 
 export const SearchProducts = () => {
-  const { filterProducts } = useFilterAllProducts()
-  const [searchTerm, setSearchTerm] = useState('')
+  const { filter, handleSearch } = useFilterAllProducts()
+
+  const { search } = filter
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value
-    filterProducts({ search: value })
-    setSearchTerm(value)
+    handleSearch({ search: value })
   }
 
   return (
@@ -19,7 +19,7 @@ export const SearchProducts = () => {
         type="text"
         className="bg-transparent w-full h-full p-2"
         placeholder="Buscar productos"
-        value={searchTerm}
+        value={search}
         onChange={handleChange}
       />
 
