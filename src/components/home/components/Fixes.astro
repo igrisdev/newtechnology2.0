@@ -15,17 +15,17 @@
   </div>
 
   <div class="container-compare">
-    <div class="compare relative bg-black flex w-full h-full aspect-video overflow-hidden [&>img]:absolute [&>img]:w-full [&>img]:object-cover [&>img]:h-full [&>img:first-child]:z-30 [&>img]:pointer-events-none [&>img]:select-none">
+    <div class="compare relative bg-black flex w-full h-full aspect-video overflow-hidden [&>img]:absolute [&>img]:object-cover [&>img]:h-full [&>img:first-child]:z-30 [&>img]:pointer-events-none [&>img]:select-none [&>img:first-child]:w-1/2">
       <img src="https://cdn.mos.cms.futurecdn.net/Vnk8xmvfXqC6TB2QmqjHy6-650-80.jpg.webp" alt="">
       <img src="https://www.mundodeportivo.com/alfabeta/hero/2022/01/fortnite-lol-arcane-skin.jpg?width=1200&aspect_ratio=16:9" alt="">
     </div>
 
-    <div class="compare relative bg-black flex w-full h-full aspect-video overflow-hidden [&>img]:absolute [&>img]:w-full [&>img]:object-cover [&>img]:h-full [&>img:first-child]:z-30 [&>img]:pointer-events-none [&>img]:select-none">
+    <div class="compare relative bg-black flex w-full h-full aspect-video overflow-hidden [&>img]:absolute [&>img:first-child]:w-1/2 [&>img]:object-cover [&>img]:h-full [&>img:first-child]:z-30 [&>img]:pointer-events-none [&>img]:select-none">
       <img src="https://i0.wp.com/codigoespagueti.com/wp-content/uploads/2022/01/jinx-arcane-cosplay-body-paint.jpg?fit=1280%2C720&ssl=1" alt="">
       <img src="https://img.redbull.com/images/c_crop,x_1321,y_0,h_1736,w_1736/c_fill,w_1000,h_960/q_auto,f_auto/redbullcom/2024/9/6/ug2lywrkpkqgdsmadiqq/jinx-arcane-temporada-2-lol" alt="">
     </div>
 
-    <div class="compare relative bg-black flex w-full h-full aspect-video overflow-hidden [&>img]:absolute [&>img]:w-full [&>img]:object-cover [&>img]:h-full [&>img:first-child]:z-30 [&>img]:pointer-events-none [&>img]:select-none">
+    <div class="compare relative bg-black flex w-full h-full aspect-video overflow-hidden [&>img]:absolute [&>img:first-child]:w-1/2 [&>img]:object-cover [&>img]:h-full [&>img:first-child]:z-30 [&>img]:pointer-events-none [&>img]:select-none">
       <img src="https://s1.elespanol.com/2016/03/23/elandroidelibre/el_androide_libre_111750617_180084867_1706x640.jpg" alt="">
       <img src="https://www.eluniversal.com.mx/resizer/v2/SXD5DAI3YVED5PDVQNMKLQ2ZWE.jpg?auth=42bee5c4a9954fa5deabddfb50ee904cceaf4e9035a2eb0e04415dadee1b025a&smart=true&width=1100&height=666" alt="">
     </div>
@@ -44,6 +44,12 @@ for (let slider of sliderCompare) {
 
   slider.addEventListener('mousemove', (e) => {
     viewImage =   e.layerX / sliderCompare[0].offsetWidth * 100
+
+    selectFirsImg.style.width = `${viewImage}%`
+  })
+
+  slider.addEventListener('touchmove', (e) => {
+    viewImage =   e.touches[0].clientX / sliderCompare[0].offsetWidth * 100
 
     selectFirsImg.style.width = `${viewImage}%`
   })
