@@ -1,6 +1,3 @@
-
-import { useState } from 'react'
-
 import { useFilterAllProducts } from '@/hooks/useFilterAllProducts'
 
 export const SearchProducts = () => {

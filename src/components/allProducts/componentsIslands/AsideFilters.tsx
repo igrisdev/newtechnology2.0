@@ -7,7 +7,7 @@ export const AsideFilters = ({
   categories: string[]
   brands: string[]
 }) => {
-  const { filter, handlePrice } = useFilterAllProducts()
+  const { filter, handlePrice, handleCategories, handleBrands } = useFilterAllProducts()
 
   const { price } = filter
 
@@ -27,6 +27,7 @@ export const AsideFilters = ({
                   <input
                     type="checkbox"
                     id={category}
+                    onClick={() => handleCategories({ categories: category })}
                     className="size-4 rounded-md"
                   />
                   {category}
@@ -46,6 +47,7 @@ export const AsideFilters = ({
                   <input
                     type="checkbox"
                     id={brand}
+                    onClick={() => handleBrands({ brands: brand })}
                     className="size-4 rounded-md"
                   />
                   {brand}

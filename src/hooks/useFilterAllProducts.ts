@@ -1,10 +1,10 @@
-interface FilterProps {
-  search?: string
-  categories: string
-  brands: string
-  discount: number
-  price: number
-}
+// interface FilterProps {
+//   search?: string
+//   categories: string
+//   brands: string
+//   discount: number
+//   price: number
+// }
 
 import type { Product } from '@/env'
 
@@ -19,6 +19,24 @@ export const useFilterAllProducts = () => {
     const newFilter = {
       ...filter,
       search
+    }
+
+    setFilter(newFilter)
+  }
+
+  const handleCategories = ({ categories }: { categories: string }) => {
+    const newFilter = {
+      ...filter,
+      categories
+    }
+
+    setFilter(newFilter)
+  }
+
+  const handleBrands = ({ brands }: { brands: string }) => {
+    const newFilter = {
+      ...filter,
+      brands
     }
 
     setFilter(newFilter)
@@ -44,7 +62,7 @@ export const useFilterAllProducts = () => {
     filterProducts()
   }, [filter])
 
-  return { filter, handleSearch, handlePrice };
+  return { filter, handleSearch, handleBrands, handleCategories, handlePrice };
 };
 
 
