@@ -4,6 +4,7 @@ import { parseDataProducts } from '@/utils/parseDataProducts'
 const baseId = import.meta.env.PUBLIC_YOUR_BASE_ID
 const tableNameProduct = import.meta.env.PUBLIC_YOUR_TABLE_ID_OR_NAME_PRODUCTS
 const tableNameFrame = import.meta.env.PUBLIC_YOUR_TABLE_ID_OR_NAME_FRAMES
+const tableNameFixes = import.meta.env.PUBLIC_YOUR_TABLE_ID_OR_NAME_FIXES
 
 const TOKEN = import.meta.env.PUBLIC_YOUR_TOKEN
 
@@ -87,6 +88,26 @@ export const APIFrames = {
     try {
       const response = await fetch(
         `https://api.airtable.com/v0/${baseId}/${tableNameFrame}`,
+        { headers }
+      )
+      if (!response.ok) {
+        throw new Error(`Error al obtener datos: ${response.statusText}`)
+      }
+      const data = await response.json()
+
+      const newData = parseDataFrames(data.records) || []
+
+      return newData
+    } catch (error) {
+      console.error('Error:', error)
+    }
+  },
+}
+export const APIFixes = {
+  getFixes: async () => {
+    try {
+      const response = await fetch(
+        `https://api.airtable.com/v0/${baseId}/${tableNameFixes}`,
         { headers }
       )
       if (!response.ok) {
