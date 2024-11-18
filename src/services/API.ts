@@ -1,5 +1,6 @@
 import { parseDataFrames } from '@/utils/parseDataFrames'
 import { parseDataProducts } from '@/utils/parseDataProducts'
+import { parseDataFixes } from '@utils/parseDataFixes'
 
 const baseId = import.meta.env.PUBLIC_YOUR_BASE_ID
 const tableNameProduct = import.meta.env.PUBLIC_YOUR_TABLE_ID_OR_NAME_PRODUCTS
@@ -115,7 +116,7 @@ export const APIFixes = {
       }
       const data = await response.json()
 
-      const newData = parseDataFrames(data.records) || []
+      const newData = parseDataFixes(data.records) || []
 
       return newData
     } catch (error) {
