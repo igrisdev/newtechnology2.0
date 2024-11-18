@@ -20,7 +20,6 @@ const frameFixes = (await APIFixes.getFixes()) || []
       <img src="https://cdn.mos.cms.futurecdn.net/Vnk8xmvfXqC6TB2QmqjHy6-650-80.jpg.webp" alt="">
       <img src="https://www.mundodeportivo.com/alfabeta/hero/2022/01/fortnite-lol-arcane-skin.jpg?width=1200&aspect_ratio=16:9" alt="">
     </div>
-
     ))}
       </div>
 </section>
@@ -54,6 +53,7 @@ for (let slider of sliderCompare) {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 500px), 1fr));
   gap: 1rem;
+  min-height: 400px;
 }
 
 .compare {
