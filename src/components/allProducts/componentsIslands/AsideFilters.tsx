@@ -1,4 +1,5 @@
 import { useFilterAllProducts } from "@hooks/useFilterAllProducts"
+import { useEffect, useState } from "react"
 
 export const AsideFilters = ({
   categories,
@@ -9,7 +10,34 @@ export const AsideFilters = ({
 }) => {
   const { filter, handlePrice, handleCategories, handleBrands } = useFilterAllProducts()
 
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
+
   const { price } = filter
+
+  const handleChangeCategories = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+
+    setSelectedCategories((prev: string[]) =>
+      event.target.checked
+        ? [...prev, value]
+        : prev.filter((option) => option !== value)
+    )
+  }
+
+  useEffect(() => handleCategories({ categories: selectedCategories }), [selectedCategories])
+
+  const handleChangeBrands = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+
+    setSelectedBrands((prev: string[]) =>
+      event.target.checked
+        ? [...prev, value]
+        : prev.filter((option) => option !== value)
+    )
+  }
+
+  useEffect(() => handleBrands({ brands: selectedBrands }), [selectedBrands])
 
   return (
     <aside className="flex flex-col gap-2 bg-local_background_4 p-2 mb-2 rounded-sm w-full min-h-[80vh]">
@@ -20,14 +48,15 @@ export const AsideFilters = ({
           <h3 className="border-b-2 pb-2 mb-2">Categorías</h3>
           <ul className="flex flex-col gap-2">
             {categories?.map((category) => (
-              <li className="flex gap-2 items-center" key={category}>
+              <li className="flex gap-2 items-center select-none" key={category}>
                 <label
                   className="flex justify-center items-center gap-2"
                 >
                   <input
                     type="checkbox"
                     id={category}
-                    onClick={() => handleCategories({ categories: category })}
+                    value={category}
+                    onChange={handleChangeCategories}
                     className="size-4 rounded-md"
                   />
                   {category}
@@ -40,14 +69,15 @@ export const AsideFilters = ({
           <h3 className="border-b-2 pb-2 mb-2">Marcas</h3>
           <ul className="flex flex-col gap-2">
             {brands?.map((brand) => (
-              <li className="flex gap-2 items-center" key={brand}>
+              <li className="flex gap-2 items-center select-none" key={brand}>
                 <label
                   className="flex justify-center items-center gap-2"
                 >
                   <input
                     type="checkbox"
                     id={brand}
-                    onClick={() => handleBrands({ brands: brand })}
+                    value={brand}
+                    onChange={handleChangeBrands}
                     className="size-4 rounded-md"
                   />
                   {brand}
@@ -59,13 +89,14 @@ export const AsideFilters = ({
         <div>
           <h3 className="border-b-2 pb-2 mb-2">Descuento</h3>
           <ul className="flex flex-col gap-2">
-            <li className="flex gap-2 items-center">
+            <li className="flex gap-2 items-center select-none">
               <label
                 className="flex justify-center items-center gap-2"
               >
                 <input
                   type="checkbox"
                   id="descuento"
+                  value={0}
                   className="size-4 rounded-md"
                 />
                 En descuento

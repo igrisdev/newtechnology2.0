@@ -4,8 +4,6 @@
 import { APIFixes } from "@services/API"
 
 const frameFixes = (await APIFixes.getFixes()) || []
-
-console.log()
 ---
 
 <section class="flex flex-col gap-12 md:py-10 pt-16 pb-10" id="frames-top">
@@ -67,5 +65,4 @@ for (let slider of sliderCompare) {
     border-right: 2px solid var(--accent);
   }
 }
-
 </style>

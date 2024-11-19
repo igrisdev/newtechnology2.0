@@ -1,11 +1,3 @@
-// interface FilterProps {
-//   search?: string
-//   categories: string
-//   brands: string
-//   discount: number
-//   price: number
-// }
-
 import type { Product } from '@/env'
 
 import { useStoreProducts } from "@/stores/storeProducts"
@@ -24,7 +16,7 @@ export const useFilterAllProducts = () => {
     setFilter(newFilter)
   }
 
-  const handleCategories = ({ categories }: { categories: string }) => {
+  const handleCategories = ({ categories }: { categories: string[] }) => {
     const newFilter = {
       ...filter,
       categories
@@ -33,7 +25,7 @@ export const useFilterAllProducts = () => {
     setFilter(newFilter)
   }
 
-  const handleBrands = ({ brands }: { brands: string }) => {
+  const handleBrands = ({ brands }: { brands: string[] }) => {
     const newFilter = {
       ...filter,
       brands
@@ -52,14 +44,35 @@ export const useFilterAllProducts = () => {
   }
 
   const filterProducts = () => {
-    const newProducts = cacheProducts.filter((product: Product) => (product.title?.toLocaleUpperCase().includes(filter?.search?.toLocaleUpperCase() ?? '') && parsePriceNumber(product?.price?.toString() ? product?.price?.toString() : product?.descuento?.toString()) >= filter.price))
 
-    console.log(filter)
+    const newProducts = cacheProducts.filter((product: Product) => {
+      const matchesSearch = product.title
+        ?.toLocaleUpperCase()
+        .includes(filter?.search?.toLocaleUpperCase() ?? '');
+
+      const productPrice = parsePriceNumber(
+        product?.price?.toString() || product?.descuento?.toString()
+      );
+      const matchesPrice = productPrice >= filter.price;
+
+      const matchesCategories =
+        filter.categories.length === 0 ||
+        filter.categories.some((value: string) => product.category.includes(value));
+
+      const matchesBrands =
+        filter.brands.length === 0 ||
+        filter.brands.some((value: string) => product.brandProduct?.includes(value));
+
+      return matchesSearch && matchesPrice && matchesCategories && matchesBrands
+    });
+
     setProducts(newProducts)
   }
 
   useEffect(() => {
     filterProducts()
+
+    console.log(filter)
   }, [filter])
 
   return { filter, handleSearch, handleBrands, handleCategories, handlePrice };

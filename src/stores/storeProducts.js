@@ -4,7 +4,7 @@ export const useStoreProducts = create((set) => ({
   loading: true,
   cacheProducts: [],
   products: [],
-  filter: { search: '', categories: 'all', brands: 'all', discount: 0, price: 0 },
+  filter: { search: '', categories: [], brands: [], discount: 0, price: 0 },
   setLoading: (newLoading) => set({ loading: newLoading }),
   setCacheProducts: (newCacheProducts) =>
     set({ cacheProducts: newCacheProducts }),
