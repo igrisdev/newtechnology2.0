@@ -1,4 +1,5 @@
 import { useFilterAllProducts } from "@hooks/useFilterAllProducts"
+import { parsePrice } from "@utils/parsePrice"
 import { useEffect, useState } from "react"
 
 export const AsideFilters = ({
@@ -13,7 +14,7 @@ export const AsideFilters = ({
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
 
-  const { discount, price } = filter
+  const { categories: categoriesStore, brands: brandsStore, discount, price } = filter
 
   const handleChangeCategories = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
@@ -60,6 +61,7 @@ export const AsideFilters = ({
                     type="checkbox"
                     id={category}
                     value={category}
+                    checked={categoriesStore.includes(category)}
                     onChange={handleChangeCategories}
                     className="size-4 rounded-md"
                   />
@@ -81,6 +83,7 @@ export const AsideFilters = ({
                     type="checkbox"
                     id={brand}
                     value={brand}
+                    checked={brandsStore.includes(brand)}
                     onChange={handleChangeBrands}
                     className="size-4 rounded-md"
                   />
@@ -117,13 +120,14 @@ export const AsideFilters = ({
                 type="range"
                 min={0}
                 max={6000000}
-                defaultValue={price}
+                value={price}
                 onChange={(e) => handlePrice({ price: Number(e.target.value) })}
                 className="w-full"
               />
-              <div>
-                <span className="text-sm">$0</span>-
-                <span className="text-sm">$1,000,000</span>
+              <div className="flex justify-between">
+                <span className="text-sm">$0</span>
+                <span className="text-sm">${price == 0 ? 0 : parsePrice(price)}</span>
+                <span className="text-sm">$6,000,000</span>
               </div>
             </li>
           </ul>
