@@ -34,6 +34,15 @@ export const useFilterAllProducts = () => {
     setFilter(newFilter)
   }
 
+  const handleDiscount = ({ discount }: { discount: boolean }) => {
+    const newFilter = {
+      ...filter,
+      discount
+    }
+
+    setFilter(newFilter)
+  }
+
   const handlePrice = ({ price }: { price: number }) => {
     const newFilter = {
       ...filter,
@@ -50,10 +59,6 @@ export const useFilterAllProducts = () => {
         ?.toLocaleUpperCase()
         .includes(filter?.search?.toLocaleUpperCase() ?? '');
 
-      const productPrice = parsePriceNumber(
-        product?.price?.toString() || product?.descuento?.toString()
-      );
-      const matchesPrice = productPrice >= filter.price;
 
       const matchesCategories =
         filter.categories.length === 0 ||
@@ -63,7 +68,17 @@ export const useFilterAllProducts = () => {
         filter.brands.length === 0 ||
         filter.brands.some((value: string) => product.brandProduct?.includes(value));
 
-      return matchesSearch && matchesPrice && matchesCategories && matchesBrands
+      const productPrice = parsePriceNumber(
+        product?.price?.toString() || product?.descuento?.toString()
+      );
+      const matchesPrice = productPrice >= filter.price;
+
+      const poductDiscount = product.descuento ? true : false
+      const matchesDiscount =
+        filter.discount === false ||
+        filter.discount === poductDiscount
+
+      return matchesSearch && matchesPrice && matchesCategories && matchesBrands && matchesDiscount
     });
 
     setProducts(newProducts)
@@ -71,11 +86,9 @@ export const useFilterAllProducts = () => {
 
   useEffect(() => {
     filterProducts()
-
-    console.log(filter)
   }, [filter])
 
-  return { filter, handleSearch, handleBrands, handleCategories, handlePrice };
+  return { filter, handleSearch, handleBrands, handleCategories, handleDiscount, handlePrice };
 };
 
 

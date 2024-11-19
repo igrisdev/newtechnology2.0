@@ -8,12 +8,12 @@ export const AsideFilters = ({
   categories: string[]
   brands: string[]
 }) => {
-  const { filter, handlePrice, handleCategories, handleBrands } = useFilterAllProducts()
+  const { filter, handlePrice, handleCategories, handleDiscount, handleBrands } = useFilterAllProducts()
 
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
 
-  const { price } = filter
+  const { discount, price } = filter
 
   const handleChangeCategories = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
@@ -38,6 +38,10 @@ export const AsideFilters = ({
   }
 
   useEffect(() => handleBrands({ brands: selectedBrands }), [selectedBrands])
+
+  const handleChangeDiscount = () => {
+    handleDiscount({ discount: !discount })
+  }
 
   return (
     <aside className="flex flex-col gap-2 bg-local_background_4 p-2 mb-2 rounded-sm w-full min-h-[80vh]">
@@ -96,7 +100,8 @@ export const AsideFilters = ({
                 <input
                   type="checkbox"
                   id="descuento"
-                  value={0}
+                  checked={discount}
+                  onChange={handleChangeDiscount}
                   className="size-4 rounded-md"
                 />
                 En descuento
