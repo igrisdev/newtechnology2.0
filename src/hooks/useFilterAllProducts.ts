@@ -53,12 +53,29 @@ export const useFilterAllProducts = () => {
   }
 
   const filterProducts = () => {
-
     const newProducts = cacheProducts.filter((product: Product) => {
-      const matchesSearch = product.title
-        ?.toLocaleUpperCase()
-        .includes(filter?.search?.toLocaleUpperCase() ?? '');
+      const item: string = filter.search
+      const value = item.toLowerCase().trim()
+      const newValue = value.split(' ')
 
+      const filterLetters = newValue.length > 3
+
+      const matchesSearch = filterLetters ? (
+        product?.title?.toLowerCase().includes(item) ||
+        product?.category?.toLowerCase().includes(item) ||
+        product?.brandProduct?.toLowerCase().includes(item) ||
+        product?.collection?.toLowerCase().includes(item) ||
+        product?.origin?.toLowerCase().includes(item)
+      ) : (
+        newValue.some(
+          (word) =>
+            product?.title?.toLowerCase().includes(word) ||
+            product?.category?.toLowerCase().includes(word) ||
+            product?.brandProduct?.toLowerCase().includes(word) ||
+            product?.collection?.toLowerCase().includes(word) ||
+            product?.origin?.toLowerCase().includes(word)
+        )
+      )
 
       const matchesCategories =
         filter.categories.length === 0 ||
@@ -90,45 +107,3 @@ export const useFilterAllProducts = () => {
 
   return { filter, handleSearch, handleBrands, handleCategories, handleDiscount, handlePrice };
 };
-
-
-// const debounce = (func: Function, delay: number) => {
-//   let timeoutId: ReturnType<typeof setTimeout> | undefined
-//   return (...args: any[]) => {
-//     if (timeoutId) clearTimeout(timeoutId)
-//     timeoutId = setTimeout(() => {
-//       func.apply(null, args)
-//     }, delay)
-//   }
-// }
-
-// const handleSearch = debounce((item: string) => {
-//   const value = item.toLowerCase().trim()
-//   const newValue = value.split(' ')
-//
-//   const filterLetters = newValue.length > 3
-//
-//   const products = cacheProducts.filter((product: Product) => {
-//     if (filterLetters) {
-//       return (
-//         product?.title?.toLowerCase().includes(item) ||
-//         product?.category?.toLowerCase().includes(item) ||
-//         product?.brandProduct?.toLowerCase().includes(item) ||
-//         product?.collection?.toLowerCase().includes(item) ||
-//         product?.origin?.toLowerCase().includes(item)
-//       )
-//     }
-//
-//
-//     return newValue.some(
-//       (word) =>
-//         product?.title?.toLowerCase().includes(word) ||
-//         product?.category?.toLowerCase().includes(word) ||
-//         product?.brandProduct?.toLowerCase().includes(word) ||
-//         product?.collection?.toLowerCase().includes(word) ||
-//         product?.origin?.toLowerCase().includes(word)
-//     )
-//   })
-//
-//   setSearchProducts(products)
-// }, 300)
