@@ -54,9 +54,8 @@ export const useFilterAllProducts = () => {
 
   const filterProducts = () => {
     const newProducts = cacheProducts.filter((product: Product) => {
-      const item: string = filter.search
-      const value = item.toLowerCase().trim()
-      const newValue = value.split(' ')
+      const item: string = filter.search.toLowerCase().trim()
+      const newValue = item.split(' ')
 
       const filterLetters = newValue.length > 3
 
