@@ -11,7 +11,7 @@ export const SearchProducts = () => {
   }
 
   return (
-    <div className="relative text-black bg-local_background_4 w-full max-w-lg flex items-center rounded-sm">
+    <div className="relative text-black bg-local_background_4 w-full max-w-5xl flex items-center rounded-sm">
       <input
         type="text"
         className="bg-transparent w-full h-full p-2"
