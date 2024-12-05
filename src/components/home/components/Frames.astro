@@ -1,9 +1,9 @@
 ---
-import type { FrameData } from "@/env"
+import type { FrameData } from '@/env'
 
-import { APIFrames } from "@services/API"
+import { APIFrames } from '@services/API'
 
-import { SectionFrames } from "@components/home/componentsIslands/SectionFrames"
+import { SectionFrames } from '@components/home/componentsIslands/SectionFrames'
 
 const framesData: FrameData = (await APIFrames.getFrames()) || []
 ---

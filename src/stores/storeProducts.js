@@ -9,5 +9,5 @@ export const useStoreProducts = create((set) => ({
   setCacheProducts: (newCacheProducts) =>
     set({ cacheProducts: newCacheProducts }),
   setProducts: (newProducts) => set({ products: newProducts }),
-  setFilter: (newfilter) => set({ filter: newfilter })
+  setFilter: (newfilter) => set({ filter: newfilter }),
 }))

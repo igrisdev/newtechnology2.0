@@ -4,6 +4,6 @@ export const parseDataFixes = (data: any) => {
   return newData.map((fixes) => ({
     id: fixes.id,
     title: fixes.fields.title,
-    image: fixes.fields.image
+    image: fixes.fields.image,
   }))
 }

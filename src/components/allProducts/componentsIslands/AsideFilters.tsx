@@ -1,6 +1,6 @@
-import { useFilterAllProducts } from "@hooks/useFilterAllProducts"
-import { parsePrice } from "@utils/parsePrice"
-import { useEffect, useState } from "react"
+import { useFilterAllProducts } from '@hooks/useFilterAllProducts'
+import { parsePrice } from '@utils/parsePrice'
+import { useEffect, useState } from 'react'
 
 export const AsideFilters = ({
   categories,
@@ -9,15 +9,28 @@ export const AsideFilters = ({
   categories: string[]
   brands: string[]
 }) => {
-  const { filter, handlePrice, handleCategories, handleDiscount, handleBrands } = useFilterAllProducts()
+  const {
+    filter,
+    handlePrice,
+    handleCategories,
+    handleDiscount,
+    handleBrands,
+  } = useFilterAllProducts()
 
-  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
-  const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([])
+  const [selectedBrands, setSelectedBrands] = useState<string[]>([])
 
-  const { categories: categoriesStore, brands: brandsStore, discount, price } = filter
+  const {
+    categories: categoriesStore,
+    brands: brandsStore,
+    discount,
+    price,
+  } = filter
 
-  const handleChangeCategories = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value;
+  const handleChangeCategories = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const value = event.target.value
 
     setSelectedCategories((prev: string[]) =>
       event.target.checked
@@ -26,10 +39,13 @@ export const AsideFilters = ({
     )
   }
 
-  useEffect(() => handleCategories({ categories: selectedCategories }), [selectedCategories])
+  useEffect(
+    () => handleCategories({ categories: selectedCategories }),
+    [selectedCategories]
+  )
 
   const handleChangeBrands = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value;
+    const value = event.target.value
 
     setSelectedBrands((prev: string[]) =>
       event.target.checked
@@ -53,10 +69,11 @@ export const AsideFilters = ({
           <h3 className="border-b-2 pb-2 mb-2">Categorías</h3>
           <ul className="flex flex-col gap-2">
             {categories?.map((category) => (
-              <li className="flex gap-2 items-center select-none" key={category}>
-                <label
-                  className="flex justify-center items-center gap-2"
-                >
+              <li
+                className="flex gap-2 items-center select-none"
+                key={category}
+              >
+                <label className="flex justify-center items-center gap-2">
                   <input
                     type="checkbox"
                     id={category}
@@ -76,9 +93,7 @@ export const AsideFilters = ({
           <ul className="flex flex-col gap-2">
             {brands?.map((brand) => (
               <li className="flex gap-2 items-center select-none" key={brand}>
-                <label
-                  className="flex justify-center items-center gap-2"
-                >
+                <label className="flex justify-center items-center gap-2">
                   <input
                     type="checkbox"
                     id={brand}
@@ -97,9 +112,7 @@ export const AsideFilters = ({
           <h3 className="border-b-2 pb-2 mb-2">Descuento</h3>
           <ul className="flex flex-col gap-2">
             <li className="flex gap-2 items-center select-none">
-              <label
-                className="flex justify-center items-center gap-2"
-              >
+              <label className="flex justify-center items-center gap-2">
                 <input
                   type="checkbox"
                   id="descuento"
@@ -126,7 +139,9 @@ export const AsideFilters = ({
               />
               <div className="flex justify-between">
                 <span className="text-sm">$0</span>
-                <span className="text-sm">${price == 0 ? 0 : parsePrice(price)}</span>
+                <span className="text-sm">
+                  ${price == 0 ? 0 : parsePrice(price)}
+                </span>
                 <span className="text-sm">$6,000,000</span>
               </div>
             </li>
