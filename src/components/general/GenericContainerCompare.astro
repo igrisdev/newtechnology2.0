@@ -1,0 +1,27 @@
+---
+import Spinner from '@components/general/Spinner.astro'
+
+const { longitude = 2 } = Astro.props
+
+const large = Array(longitude)
+large.fill('')
+---
+
+<div class="container-compare">
+  {
+    large.map(() => (
+      <div class="relative w-full h-full aspect-video bg-gray-400 overflow-hidden grid place-content-center">
+        <Spinner />
+      </div>
+    ))
+  }
+</div>
+
+<style>
+  .container-compare {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));
+    gap: 1rem;
+    min-height: 400px;
+  }
+</style>

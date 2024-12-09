@@ -1,0 +1,18 @@
+---
+import type { FrameData } from '@/env'
+import '../componentsIslands/styles.css'
+
+import { APIFrames } from '@services/API'
+
+const frames: FrameData = (await APIFrames.getFrames()) || []
+---
+
+<div id="frames" class="min-h-[400px]">
+  {
+    frames.map(({ title, image }) => (
+      <article class="overflow-hidden rounded-md shadow-md hover:shadow-local_accent transition-all duration-300 aspect-square w-full h-full">
+        <img class="w-full h-full object-cover" src={image} alt={title} />
+      </article>
+    ))
+  }
+</div>
