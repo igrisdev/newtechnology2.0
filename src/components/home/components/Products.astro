@@ -1,11 +1,5 @@
 ---
-import type { ProductData } from '@/env'
-
-import { APIProducts } from '@services/API'
-
-import { SectionProducts } from '@components/home/componentsIslands/SectionProducts'
-
-const productsData: ProductData = (await APIProducts.getProducts()) || []
+import ContainerProducts from './ContainerProducts.astro'
 ---
 
 <section
@@ -22,5 +16,5 @@ const productsData: ProductData = (await APIProducts.getProducts()) || []
     </p>
   </div>
 
-  <SectionProducts client:load productsData={productsData} />
+  <ContainerProducts />
 </section>

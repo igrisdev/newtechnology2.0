@@ -1,0 +1,11 @@
+---
+import type { ProductData } from '@/env'
+
+import { APIProducts } from '@services/API'
+
+import { SectionProducts } from '@components/home/componentsIslands/SectionProducts'
+
+const productsData: ProductData = (await APIProducts.getProducts()) || []
+---
+
+<SectionProducts client:load productsData={productsData} />
