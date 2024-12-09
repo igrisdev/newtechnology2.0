@@ -1,0 +1,61 @@
+---
+// import type { FrameData } from "@/env"
+
+import { APIFixes } from '@services/API'
+
+const frameFixes = (await APIFixes.getFixes()) || []
+---
+
+<div class="container-compare">
+  {
+    frameFixes.map((fixes) => (
+      <div class="compare relative bg-black flex w-full h-full aspect-video overflow-hidden [&>img]:absolute [&>img]:object-cover [&>img]:w-full  [&>img]:h-full [&>img:first-child]:z-30 [&>img]:pointer-events-none [&>img]:select-none [&>img:first-child]:w-1/2">
+        <img src={fixes.image[0].url} alt={fixes.title} />
+        <img src={fixes.image[1].url} alt={fixes.title} />
+      </div>
+    ))
+  }
+</div>
+
+<script>
+  const $$ = (element: string) => document.querySelectorAll(element)
+
+  const sliderCompare = $$('.compare') as NodeListOf<HTMLDivElement>
+
+  let viewImage
+
+  for (let slider of sliderCompare) {
+    let selectFirsImg = slider.firstElementChild as HTMLImageElement
+
+    slider.addEventListener('mousemove', (e) => {
+      viewImage = (e.layerX / sliderCompare[0].offsetWidth) * 100
+
+      selectFirsImg.style.width = `${viewImage}%`
+    })
+
+    slider.addEventListener('touchmove', (e) => {
+      viewImage = (e.touches[0].clientX / sliderCompare[0].offsetWidth) * 100
+
+      selectFirsImg.style.width = `${viewImage}%`
+    })
+  }
+</script>
+
+<style>
+  .container-compare {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 500px), 1fr));
+    gap: 1rem;
+    min-height: 400px;
+  }
+
+  .compare {
+    img {
+      object-position: 0% 100%;
+    }
+
+    & > img:first-child {
+      border-right: 2px solid var(--accent);
+    }
+  }
+</style>
