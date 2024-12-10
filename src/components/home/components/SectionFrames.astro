@@ -4,13 +4,17 @@ import '../componentsIslands/styles.css'
 
 import { APIFrames } from '@services/API'
 
+const { all = false } = Astro.props
+
 const dataFrames: FrameData = (await APIFrames.getFrames()) || []
 const frames = dataFrames.slice(0, 6)
+
+const containerFixes = all ? dataFrames : frames
 ---
 
 <div id="frames" class="min-h-[400px]">
   {
-    frames.map(({ title, image }) => (
+    containerFixes.map(({ title, image }) => (
       <article class="overflow-hidden rounded-md shadow-md hover:shadow-local_accent transition-all duration-300 aspect-square w-full h-full">
         <img class="w-full h-full object-cover" src={image} alt={title} />
       </article>
@@ -19,7 +23,7 @@ const frames = dataFrames.slice(0, 6)
 </div>
 
 {
-  dataFrames.length > 6 && (
+  all == false && dataFrames.length > 6 && (
     <div class="grid place-content-center">
       <a
         href="/all_frames"

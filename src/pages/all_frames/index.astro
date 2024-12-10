@@ -1,0 +1,22 @@
+---
+import Layout from '@/layouts/LayoutProduct.astro'
+
+import GenericContainerCompare from '@/components/general/GenericContainerCompare.astro'
+import SectionFrames from '@/components/home/components/SectionFrames.astro'
+---
+
+<Layout title="Cuadros Personalizados">
+  <section class="flex flex-col gap-10 md:py-10 pt-16 pb-10" id="frames-top">
+    <div class="w-full">
+      <h2
+        class="text-2xl sm:text-4xl font-bold text-center !text-local_title mt-2"
+      >
+        Todos los cuadros personalizados
+      </h2>
+    </div>
+
+    <SectionFrames server:defer all={true}>
+      <GenericContainerCompare slot="fallback" longitude={9} fig={true} />
+    </SectionFrames>
+  </section>
+</Layout>

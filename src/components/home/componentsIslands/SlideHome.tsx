@@ -109,7 +109,7 @@ export const SlideHome = () => {
 
                 <div className="flex flex-col justify-between h-full">
                   <div>
-                    <h2 className="text-local_title text-3xl font-bold">
+                    <h2 className="text-local_title text-xl sm:text-3xl font-bold mt-2">
                       {title}
                     </h2>
                     <p className="text-local_text mt-2 text-sm">

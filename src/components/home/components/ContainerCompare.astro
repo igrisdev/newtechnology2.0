@@ -3,13 +3,17 @@
 
 import { APIFixes } from '@services/API'
 
+const { all = false } = Astro.props
+
 const fixes = (await APIFixes.getFixes()) || []
 const frameFixes = fixes.slice(0, 6)
+
+const containerFixes = all ? fixes : frameFixes
 ---
 
 <div class="container-compare">
   {
-    frameFixes.map((fixes) => (
+    containerFixes.map((fixes) => (
       <div class="compare relative bg-black flex w-full h-full aspect-video overflow-hidden [&>img]:absolute [&>img]:object-cover [&>img]:w-full  [&>img]:h-full [&>img:first-child]:z-30 [&>img]:pointer-events-none [&>img]:select-none [&>img:first-child]:w-1/2">
         <img src={fixes.image[0].url} alt={fixes.title} />
         <img src={fixes.image[1].url} alt={fixes.title} />
@@ -19,7 +23,7 @@ const frameFixes = fixes.slice(0, 6)
 </div>
 
 {
-  fixes.length > 6 && (
+  all == false && fixes.length > 6 && (
     <div class="grid place-content-center">
       <a
         href="/all_fixes"
