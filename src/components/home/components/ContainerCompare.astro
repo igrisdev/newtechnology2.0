@@ -3,7 +3,8 @@
 
 import { APIFixes } from '@services/API'
 
-const frameFixes = (await APIFixes.getFixes()) || []
+const fixes = (await APIFixes.getFixes()) || []
+const frameFixes = fixes.slice(0, 6)
 ---
 
 <div class="container-compare">
@@ -16,6 +17,19 @@ const frameFixes = (await APIFixes.getFixes()) || []
     ))
   }
 </div>
+
+{
+  fixes.length > 6 && (
+    <div class="grid place-content-center">
+      <a
+        href="/all_fixes"
+        class="px-6 py-2 rounded bg-local_button text-local_text_2 font-medium"
+      >
+        ver mas
+      </a>
+    </div>
+  )
+}
 
 <script>
   const $$ = (element: string) => document.querySelectorAll(element)
@@ -44,7 +58,7 @@ const frameFixes = (await APIFixes.getFixes()) || []
 <style>
   .container-compare {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 500px), 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));
     gap: 1rem;
     min-height: 400px;
   }
