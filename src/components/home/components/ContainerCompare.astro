@@ -9,6 +9,8 @@ const fixes = (await APIFixes.getFixes()) || []
 const frameFixes = fixes.slice(0, 6)
 
 const containerFixes = all ? fixes : frameFixes
+
+console.log(fixes)
 ---
 
 <div class="container-compare">
