@@ -21,5 +21,8 @@ export const parseDataProducts = (data: Fields): ProductData => {
       origin: product.fields.origin,
       shell: product.fields.shell,
     }))
-    .filter((item) => item.shell.toString().toLowerCase() !== 'si')
+    .filter(
+      (item) =>
+        item.shell.toString().toLowerCase() !== 'si' && item.image !== undefined
+    )
 }

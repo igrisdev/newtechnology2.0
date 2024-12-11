@@ -98,6 +98,7 @@ export const APIFrames = {
 
       const newData = parseDataFrames(data.records) || []
 
+      console.log(newData)
       return newData
     } catch (error) {
       console.error('Error:', error)
