@@ -9,14 +9,46 @@ const fixes = (await APIFixes.getFixes()) || []
 const frameFixes = fixes.slice(0, 6)
 
 const containerFixes = all ? fixes : frameFixes
-
-console.log(fixes)
 ---
 
+<!-- Reina Copia Este ejemplo en html y baja a copiar todo el script y style --><!--
+<div class="container-compare">
+  <div class="compare">
+    <img
+      src="https://v5.airtableusercontent.com/v3/u/36/36/1735617600000/BBrmR_4h8DgWX7WXHvQxhQ/BU18EiZv0W8E_xeN3j5M2T14VoCOeYiqiZH4lkSXZT0FZPVAMb820Ncf1YDPFfOfJi_6f5GmAlYkvNQ-cFB_R2aLU0Ncp9y5CKXaK_hMZRmLSUR6k_giCTMVLU3IrVNJCnpOMycWBs4LHdYP0Q7o1A/6iRPyfCvHkIfKOKycWxmWbA1VR583RzAnplNUcavqHY"
+      alt="Titulo de la imagen"
+    />
+    <img
+      src="https://v5.airtableusercontent.com/v3/u/36/36/1735617600000/YjIgJEJrJoHm_VgCXhskrQ/KXk6TVP6aSFl2g_IYZFglHQxwjnNLS7MtTC8k39NuiC68oFwbHV39InXygjM_0qj0qzwtGhFGEU3I44hDs8zDfqgIM6R7CyNswbB7R1Wdv8n88AOPkydyrUEiEPVVL0-W-dJbCdHWX9RiF1TFoNhfw/jaRWi_UrwR8H5xqbTeHRbMGr1nHZCeGHzgGALK-K4Ew"
+      alt="Titulo de la imagen"
+    />
+  </div>
+  <div class="compare">
+    <img
+      src="https://v5.airtableusercontent.com/v3/u/36/36/1735617600000/BBrmR_4h8DgWX7WXHvQxhQ/BU18EiZv0W8E_xeN3j5M2T14VoCOeYiqiZH4lkSXZT0FZPVAMb820Ncf1YDPFfOfJi_6f5GmAlYkvNQ-cFB_R2aLU0Ncp9y5CKXaK_hMZRmLSUR6k_giCTMVLU3IrVNJCnpOMycWBs4LHdYP0Q7o1A/6iRPyfCvHkIfKOKycWxmWbA1VR583RzAnplNUcavqHY"
+      alt="Titulo de la imagen"
+    />
+    <img
+      src="https://v5.airtableusercontent.com/v3/u/36/36/1735617600000/YjIgJEJrJoHm_VgCXhskrQ/KXk6TVP6aSFl2g_IYZFglHQxwjnNLS7MtTC8k39NuiC68oFwbHV39InXygjM_0qj0qzwtGhFGEU3I44hDs8zDfqgIM6R7CyNswbB7R1Wdv8n88AOPkydyrUEiEPVVL0-W-dJbCdHWX9RiF1TFoNhfw/jaRWi_UrwR8H5xqbTeHRbMGr1nHZCeGHzgGALK-K4Ew"
+      alt="Titulo de la imagen"
+    />
+  </div>
+  <div class="compare">
+    <img
+      src="https://v5.airtableusercontent.com/v3/u/36/36/1735617600000/BBrmR_4h8DgWX7WXHvQxhQ/BU18EiZv0W8E_xeN3j5M2T14VoCOeYiqiZH4lkSXZT0FZPVAMb820Ncf1YDPFfOfJi_6f5GmAlYkvNQ-cFB_R2aLU0Ncp9y5CKXaK_hMZRmLSUR6k_giCTMVLU3IrVNJCnpOMycWBs4LHdYP0Q7o1A/6iRPyfCvHkIfKOKycWxmWbA1VR583RzAnplNUcavqHY"
+      alt="Titulo de la imagen"
+    />
+    <img
+      src="https://v5.airtableusercontent.com/v3/u/36/36/1735617600000/YjIgJEJrJoHm_VgCXhskrQ/KXk6TVP6aSFl2g_IYZFglHQxwjnNLS7MtTC8k39NuiC68oFwbHV39InXygjM_0qj0qzwtGhFGEU3I44hDs8zDfqgIM6R7CyNswbB7R1Wdv8n88AOPkydyrUEiEPVVL0-W-dJbCdHWX9RiF1TFoNhfw/jaRWi_UrwR8H5xqbTeHRbMGr1nHZCeGHzgGALK-K4Ew"
+      alt="Titulo de la imagen"
+    />
+  </div>
+</div>
+-->
 <div class="container-compare">
   {
     containerFixes.map((fixes) => (
-      <div class="compare relative bg-black flex w-full h-full aspect-video overflow-hidden [&>img]:absolute [&>img]:object-cover [&>img]:w-full  [&>img]:h-full [&>img:first-child]:z-30 [&>img]:pointer-events-none [&>img]:select-none [&>img:first-child]:w-1/2">
+      <div class="compare ">
         <img src={fixes.image[0].url} alt={fixes.title} />
         <img src={fixes.image[1].url} alt={fixes.title} />
       </div>
@@ -70,12 +102,32 @@ console.log(fixes)
   }
 
   .compare {
+    position: relative;
+    background: #000;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+
     img {
+      position: absolute;
       object-position: 0% 100%;
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      user-select: none;
+
+      &:first-child {
+        z-index: 30;
+        width: 50%;
+        height: 100%;
+      }
     }
 
     & > img:first-child {
-      border-right: 2px solid var(--accent);
+      border-right: 2px solid rgb(24, 233, 24);
     }
   }
 </style>
