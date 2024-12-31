@@ -2,6 +2,9 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 
 import { sendMessage } from '@utils/SendMessageWhatsApp'
 
+// import required modules
+import { Pagination, Autoplay } from 'swiper/modules'
+
 // Import Swiper styles
 import 'swiper/css'
 import 'swiper/css/pagination'
@@ -9,64 +12,62 @@ import 'swiper/css/navigation'
 
 import './styles.css'
 
-// import required modules
-import { Pagination, Navigation, Autoplay } from 'swiper/modules'
+const services = [
+  {
+    title: 'Reparación',
+    description: 'Reparación de equipos de computadoras y teléfonos móviles',
+    image:
+      'https://tecnosentry.com/wp-content/uploads/2024/08/cell-android-repair-1024x600-1.webp',
+    message: 'hola',
+  },
+  {
+    title: 'Venta Celulares',
+    description: 'Venta de celulares de segunda mano',
+    image:
+      'https://http2.mlstatic.com/D_NQ_NP_663333-MCO75319299755_032024-O.webp',
+    href: '/all_products',
+    text: 'Productos',
+  },
+  {
+    title: 'Venta Accesorios',
+    description: 'Venta de accesorios para computadoras y teléfonos móviles',
+    image:
+      'https://http2.mlstatic.com/D_NQ_NP_663333-MCO75319299755_032024-O.webp',
+    href: '/all_products',
+    text: 'Productos',
+  },
+  {
+    title: 'Venta Repuestos',
+    description: 'Venta de repuestos para computadoras y teléfonos móviles',
+    image:
+      'https://image.made-in-china.com/202f0j00jkfoSlsnGvce/Hot-Selling-New-Brand-Repuestos-PARA-Cellular-Smart-Phone-LCD-Screen-Replacement-for-Infinixn-Hot-12-PRO.webp',
+    href: '/all_products',
+    text: 'Productos',
+  },
+  {
+    title: 'Cuadros Personalizados',
+    description: 'Venta de cuadros personalizados',
+    image:
+      'https://m.media-amazon.com/images/I/61h6v7CNvUL._UF1000,1000_QL80_.jpg',
+    message: 'hola',
+  },
+]
 
 export const SlideHome = () => {
-  const handelButtonWhatsApp = (message: string) => {
+  const handleButtonWhatsApp = (message: string) => {
     sendMessage(message)
   }
-
-  const services = [
-    {
-      title: 'Reparación',
-      description: 'Reparación de equipos de computadoras y teléfonos móviles',
-      image:
-        'https://tecnosentry.com/wp-content/uploads/2024/08/cell-android-repair-1024x600-1.webp',
-      message: 'hola',
-    },
-    {
-      title: 'Venta Celulares',
-      description: 'Venta de celulares de segunda mano',
-      image:
-        'https://http2.mlstatic.com/D_NQ_NP_663333-MCO75319299755_032024-O.webp',
-      href: '/all_products',
-      text: 'Productos',
-    },
-    {
-      title: 'Venta Accesorios',
-      description: 'Venta de accesorios para computadoras y teléfonos móviles',
-      image:
-        'https://http2.mlstatic.com/D_NQ_NP_663333-MCO75319299755_032024-O.webp',
-      href: '/all_products',
-      text: 'Productos',
-    },
-    {
-      title: 'Venta Repuestos',
-      description: 'Venta de repuestos para computadoras y teléfonos móviles',
-      image:
-        'https://image.made-in-china.com/202f0j00jkfoSlsnGvce/Hot-Selling-New-Brand-Repuestos-PARA-Cellular-Smart-Phone-LCD-Screen-Replacement-for-Infinixn-Hot-12-PRO.webp',
-      href: '/all_products',
-      text: 'Productos',
-    },
-    {
-      title: 'Cuadros Personalizados',
-      description: 'Venta de cuadros personalizados',
-      image:
-        'https://m.media-amazon.com/images/I/61h6v7CNvUL._UF1000,1000_QL80_.jpg',
-      message: 'hola',
-    },
-  ]
 
   return (
     <>
       <Swiper
-        modules={[Pagination, Navigation, Autoplay]}
+        loop={true}
+        modules={[Pagination, Autoplay]}
         pagination={{
           clickable: true,
         }}
         autoplay={{
-          delay: 3000,
+          delay: 2500,
           disableOnInteraction: false,
         }}
         breakpoints={{
@@ -87,11 +88,7 @@ export const SlideHome = () => {
             spaceBetween: 50,
           },
         }}
-        slidesPerView={1}
-        spaceBetween={30}
-        loop={true}
-        navigation={true}
-        className="mySwiper"
+        className="mySwiper !pb-14"
       >
         {services.map(
           ({ title, description, image, message, text, href }, index) => (
@@ -118,7 +115,7 @@ export const SlideHome = () => {
                   </div>
                   {message ? (
                     <button
-                      onClick={() => handelButtonWhatsApp(message)}
+                      onClick={() => handleButtonWhatsApp(message)}
                       className="w-max gap-2 bg-local_accent rounded-md px-5 py-2 text-local_text_2 font-semibold flex"
                     >
                       <p className="text-lg">Contactar</p>
