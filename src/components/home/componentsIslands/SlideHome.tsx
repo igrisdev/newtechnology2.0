@@ -1,4 +1,5 @@
 import { Swiper, SwiperSlide } from 'swiper/react'
+import { useState } from 'react'
 
 import { sendMessage } from '@utils/SendMessageWhatsApp'
 
@@ -8,7 +9,7 @@ import { Pagination, Autoplay } from 'swiper/modules'
 // Import Swiper styles
 import 'swiper/css'
 import 'swiper/css/pagination'
-import 'swiper/css/navigation'
+import 'swiper/css/autoplay'
 
 import './styles.css'
 
@@ -54,13 +55,16 @@ const services = [
 ]
 
 export const SlideHome = () => {
+  const [swiperReady, setSwiperReady] = useState(false)
+
   const handleButtonWhatsApp = (message: string) => {
     sendMessage(message)
   }
 
   return (
-    <>
+    <div className={`${swiperReady ? 'h-[450px]' : 'hidden'}`}>
       <Swiper
+        onInit={() => setSwiperReady(true)}
         loop={true}
         modules={[Pagination, Autoplay]}
         pagination={{
@@ -99,11 +103,8 @@ export const SlideHome = () => {
                     className="w-full h-full object-cover"
                     src={image}
                     alt={title}
-                    width="1920"
-                    height="2193"
                   />
                 </div>
-
                 <div className="flex flex-col justify-between h-full">
                   <div>
                     <h2 className="text-local_title text-xl sm:text-3xl font-bold mt-2">
@@ -154,6 +155,6 @@ export const SlideHome = () => {
           )
         )}
       </Swiper>
-    </>
+    </div>
   )
 }
