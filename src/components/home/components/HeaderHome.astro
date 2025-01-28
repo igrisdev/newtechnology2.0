@@ -1,4 +1,5 @@
 ---
+import Title from '@/components/general/Title.astro'
 import InfoHeader from '@components/general/InfoHeader.astro'
 
 type NavLink = {
@@ -57,13 +58,7 @@ const navWithMoreLinks: NavWithMoreLinks[] = [
   <section
     class="flex items-center justify-between gap-2 h-16 md:relative fixed z-50 w-full px-4 xl:px-0 bg-local_background"
   >
-    <a href="/" class="text-local_title">
-      <img
-        src="/logo.png"
-        alt="logo"
-        class="min-w-16 max-w-16 md:min-w-32 object-contain object-center"
-      />
-    </a>
+    <Title />
 
     <nav class="hidden md:flex">
       <ul class="flex gap-4 text-sm font-medium text-local_subtitle">

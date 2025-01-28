@@ -1,4 +1,5 @@
 ---
+import Title from '@/components/general/Title.astro'
 import InfoHeader from '@components/general/InfoHeader.astro'
 ---
 
@@ -8,9 +9,7 @@ import InfoHeader from '@components/general/InfoHeader.astro'
   <section
     class="flex items-center justify-between gap-2 h-16 md:relative fixed z-50 w-full px-4 xl:px-0 bg-local_background"
   >
-    <a href="/" class="text-local_title">
-      <h1 class="text-md sm:text-xl font-bold">Now Technology</h1>
-    </a>
+    <Title />
 
     <a
       href="/all_products"
