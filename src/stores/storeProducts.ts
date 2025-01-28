@@ -5,9 +5,9 @@ export const useStoreProducts = create((set) => ({
   cacheProducts: [],
   products: [],
   filter: { search: '', categories: [], brands: [], discount: false, price: 0 },
-  setLoading: (newLoading) => set({ loading: newLoading }),
-  setCacheProducts: (newCacheProducts) =>
+  setLoading: (newLoading: any) => set({ loading: newLoading }),
+  setCacheProducts: (newCacheProducts: any) =>
     set({ cacheProducts: newCacheProducts }),
-  setProducts: (newProducts) => set({ products: newProducts }),
-  setFilter: (newfilter) => set({ filter: newfilter }),
+  setProducts: (newProducts: any) => set({ products: newProducts }),
+  setFilter: (newfilter: any) => set({ filter: newfilter }),
 }))
