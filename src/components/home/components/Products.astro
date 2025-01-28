@@ -1,4 +1,5 @@
 ---
+import GenericContainerCompare from '@/components/general/GenericContainerCompare.astro'
 import ContainerProducts from './ContainerProducts.astro'
 ---
 
@@ -16,5 +17,7 @@ import ContainerProducts from './ContainerProducts.astro'
     </p>
   </div>
 
-  <ContainerProducts />
+  <ContainerProducts server:defer>
+    <GenericContainerCompare slot="fallback" fig={true} longitude={2} />
+  </ContainerProducts>
 </section>
