@@ -1,6 +1,8 @@
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { useState } from 'react'
 
+import fixed from '@assets/reparacion.jpg'
+
 import { sendMessage } from '@utils/SendMessageWhatsApp'
 
 // import required modules
@@ -17,8 +19,7 @@ const services = [
   {
     title: 'Reparación',
     description: 'Reparación de equipos de computadoras y teléfonos móviles',
-    image:
-      'https://tecnosentry.com/wp-content/uploads/2024/08/cell-android-repair-1024x600-1.webp',
+    image: fixed.src,
     message: 'hola',
   },
   {
