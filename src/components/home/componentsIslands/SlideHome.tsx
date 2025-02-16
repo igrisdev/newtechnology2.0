@@ -20,7 +20,7 @@ const services = [
     title: 'Reparación',
     description: 'Reparación de equipos de computadoras y teléfonos móviles',
     image: fixed.src,
-    message: 'hola',
+    message: 'Solicitando reparación desde la web:',
   },
   {
     title: 'Venta Celulares',
@@ -51,7 +51,7 @@ const services = [
     description: 'Venta de cuadros personalizados',
     image:
       'https://m.media-amazon.com/images/I/61h6v7CNvUL._UF1000,1000_QL80_.jpg',
-    message: 'hola',
+    message: 'Solicitando información de un cuadro personalizado',
   },
 ]
 
