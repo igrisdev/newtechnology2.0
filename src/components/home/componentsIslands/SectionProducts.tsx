@@ -33,8 +33,6 @@ export const SectionProducts = ({
       filter == 'todos' ? productsData : category == filter
     )
 
-    console.log(newProducts)
-
     setProducts(newProducts)
   }
 
