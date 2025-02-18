@@ -4,8 +4,17 @@ import type { ProductData } from '@/env'
 import { APIProducts } from '@services/API'
 
 import { SectionProducts } from '@components/home/componentsIslands/SectionProducts'
+import { callSafely } from 'astro:actions'
 
 const productsData: ProductData = (await APIProducts.getProducts()) || []
+
+const [...categories] = new Set(productsData.map(({ category }) => category))
+
+const category = categories.slice(0, 3)
 ---
 
-<SectionProducts client:load productsData={productsData} />
+<SectionProducts
+  client:load
+  productsData={productsData}
+  categories={category}
+/>

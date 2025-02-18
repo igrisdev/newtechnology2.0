@@ -8,17 +8,19 @@ import { CardProduct } from '@/components/general/CardProduct'
 
 export const SectionProducts = ({
   productsData,
+  categories,
 }: {
   productsData: ProductData
+  categories: string[]
 }) => {
-  const [filter, setFilter] = useState('celulares')
+  const [filter, setFilter] = useState(categories[0] || 'celulares')
   const [products, setProducts] = useState<ProductData>(productsData)
 
-  const buttons = [
-    { name: 'Celulares', value: 'celulares' },
-    { name: 'Accesorios', value: 'accesorios' },
-    { name: 'Partes', value: 'partes' },
-  ]
+  const buttons =
+    categories?.map((category) => ({
+      name: category,
+      value: category,
+    })) || []
 
   const stylesButtonSelected = 'bg-local_button text-local_text_2'
 
@@ -27,9 +29,11 @@ export const SectionProducts = ({
   }
 
   const handleFilterProducts = (): void => {
-    const newProducts = productsData?.filter(({ collection }: Product) =>
-      filter == 'todos' ? productsData : collection == filter
+    const newProducts = productsData?.filter(({ category }: Product) =>
+      filter == 'todos' ? productsData : category == filter
     )
+
+    console.log(newProducts)
 
     setProducts(newProducts)
   }
